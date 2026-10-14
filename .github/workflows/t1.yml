@@ -55,6 +55,10 @@ on:
       - 'release/**'
   workflow_dispatch:
 
+# Read-only token: these workflows only build and test
+permissions:
+  contents: read
+
 # A push supersedes the run of the push before it: the tier costs the better part of an hour of
 # macOS runner time, and an outdated answer is worth none of it.
 concurrency:

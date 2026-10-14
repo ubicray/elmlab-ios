@@ -5,6 +5,10 @@
 name: tests
 on: [push, pull_request]
 
+# Read-only token: these workflows only build and test
+permissions:
+  contents: read
+
 # A push supersedes the run of the push before it - an answer about a commit that is no longer
 # the head of the branch is worth no runner minutes
 concurrency:
