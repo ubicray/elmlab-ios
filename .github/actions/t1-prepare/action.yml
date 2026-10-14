@@ -33,6 +33,10 @@ runs:
     - uses: actions/checkout@v5
       with:
         repository: phyphox/phyphox-docs
+        # Pinned to the docs as they were when this fork was taken (upstream b7558d6,
+        # 2026-08-31): the corpus there runs ahead of the app, and newer fixtures need
+        # app changes this fork does not have yet. Move it along with upstream merges.
+        ref: bfeca0c66f4492ac5b0844d493d61d84a75e61a3
         path: phyphox-docs
 
     - uses: actions/download-artifact@v4
