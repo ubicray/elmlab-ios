@@ -1,6 +1,6 @@
-"app_name" = "phyphox";
+"app_name" = "Elm Lab";
 "action_settings" = "設定";
-"title_activity_experiment" = "phyphox";
+"title_activity_experiment" = "Elm Lab";
 "newExperimentPhyphoxInfo" = "データ分析や同僚，学生，友人との共有等の高度の実験を行うには phyphox.org のリンクを参照ください．";
 "newExperimentInputTitle" = "タイトル";
 "newExperimentInputBufferSize" = "バッファーサイズ(格納する値の数)";
@@ -203,12 +203,12 @@
 "toggleBrightMode" = "Bright mode";
 "networkPrivacyWarning" = "Privacy warning";
 "networkVisitPrivacyURL" = "Privacy policy";
-"networkPrivacyInfo" = "This experiment uses a network connection, which means that experiment data can be transmitted to a network service. You can find more details by clicking the privacy policy button below, which will take you to a website with a privacy policy provided by the creator of this experiment. If the network service is not a local device, you should be aware that phyphox may transmit the following information if you start this experiment:";
+"networkPrivacyInfo" = "This experiment uses a network connection, which means that experiment data can be transmitted to a network service. You can find more details by clicking the privacy policy button below, which will take you to a website with a privacy policy provided by the creator of this experiment. If the network service is not a local device, you should be aware that Elm Lab may transmit the following information if you start this experiment:";
 "networkPrivacyUniqueID" = "An id that is unique to this device and the network service, which allow to match all data send from this device through this experiment configuration.";
 "networkPrivacySensorData" = "Data from the following sensors:";
 "networkPrivacySensorMicrophone" = "Recordings or data derived from recordings from the microphone.";
 "networkPrivacySensorLocation" = "Location data (GPS data or similar).";
-"networkPrivacyDeviceInfo" = "Detailed information about the model of your device and/or the version of phyphox.";
+"networkPrivacyDeviceInfo" = "Detailed information about the model of your device and/or the version of Elm Lab.";
 "networkPrivacySensorInfo" = "Technical details about the following sensors:";
 "categoryPhyphoxOrg" = "Contribute to phyphox";
 "categoryPhyphoxOrgHint" = "There are new options to support phyphox at the bottom of the list.";

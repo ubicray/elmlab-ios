@@ -1,0 +1,91 @@
+<phyphox version="1.20" locale="az">
+  <title>Hava təzyiqi: baş və ayaq</title>
+  <category>Muzey nümayişi</category>
+  <icon format="base64">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</icon>
+  <description>Hava sütunu da çəkiyə malikdir: aşağıda təzyiq yuxarıdakından böyükdür. Boyunuz qədər (1,7 m) hündürlük fərqi təzyiqi təxminən 20 Pa (0,2 hPa) dəyişir: Δp = ρ·g·h = 1,2 · 9,81 · 1,7 ≈ 20 Pa.
+
+Necə: telefonu yerə qoyun, ölçməni başladın, 20–30 s gözləyin (istənilən an «Sıfırla» düyməsi ilə indiki səviyyəni sıfır götürə bilərsiniz). Sonra telefonu başınız hündürlüyünə qaldırıb yenə 20–30 s tərpətməyin. Qrafikdə ~20 Pa-lıq pillə görünəcək.</description>
+  <translations>
+    <translation locale="tr">
+      <title>Hava basıncı: baş ve ayak</title>
+      <category>Müze gösterisi</category>
+      <description>Havanın da ağırlığı vardır: aşağıda basınç yukarıdakinden büyüktür. Boyunuz kadar (1,7 m) yükseklik farkı basıncı yaklaşık 20 Pa (0,2 hPa) değiştirir: Δp = ρ·g·h = 1,2 · 9,81 · 1,7 ≈ 20 Pa.
+
+Nasıl: telefonu yere koyun, ölçümü başlatın, 20–30 s bekleyin (istediğiniz an «Sıfırla» düğmesiyle mevcut seviyeyi sıfır kabul edebilirsiniz). Sonra telefonu başınızın yüksekliğine kaldırıp yine 20–30 s oynatmayın. Grafikte ~20 Pa'lık bir basamak görünecek.</description>
+      <string original="Ölçmə">Ölçüm</string>
+      <string original="Təzyiq fərqi Δp">Basınç farkı Δp</string>
+      <string original="Hündürlük fərqi Δh">Yükseklik farkı Δh</string>
+      <string original="Sıfırla (bu səviyyə = 0)">Sıfırla (bu seviye = 0)</string>
+      <string original="Təzyiq fərqi (başlanğıca nəzərən)">Basınç farkı (başlangıca göre)</string>
+      <string original="Atmosfer təzyiqi">Atmosfer basıncı</string>
+      <string original="Telefonu yerdən başınızın hündürlüyünə qaldırın: Δp ≈ −20 Pa, Δh ≈ +1,7 m. Ölçmə zamanı telefonu tərpətməyin və qapıları açmayın.">Telefonu yerden başınızın yüksekliğine kaldırın: Δp ≈ −20 Pa, Δh ≈ +1,7 m. Ölçüm sırasında telefonu oynatmayın ve kapıları açmayın.</string>
+      <string original="Təzyiq">Basınç</string>
+      <string original="Vaxt (s)">Zaman (s)</string>
+      <string original="Təzyiq (hPa)">Basınç (hPa)</string>
+    </translation>
+  </translations>
+  <data-containers>
+    <container size="0">pressure</container>
+    <container size="0">p_time</container>
+    <container size="1">p0</container>
+    <container size="0">dp</container>
+    <container size="0">dh</container>
+  </data-containers>
+  <input>
+    <sensor type="pressure" rate="2" average="true">
+      <output component="x">pressure</output>
+      <output component="t">p_time</output>
+    </sensor>
+  </input>
+  <views>
+    <view label="Ölçmə">
+      <value label="Təzyiq fərqi Δp" size="3" precision="1" unit="Pa">
+        <input>dp</input>
+      </value>
+      <value label="Hündürlük fərqi Δh" size="2" precision="2" unit="m">
+        <input>dh</input>
+      </value>
+      <button label="Sıfırla (bu səviyyə = 0)">
+        <input type="empty"/>
+        <output>pressure</output>
+        <input type="empty"/>
+        <output>p_time</output>
+        <input type="empty"/>
+        <output>dp</output>
+        <input type="empty"/>
+        <output>dh</output>
+      </button>
+      <graph label="Təzyiq fərqi (başlanğıca nəzərən)" timeOnX="true" labelX="t" unitX="s" labelY="Δp" unitY="Pa" partialUpdate="true">
+        <input axis="x">p_time</input>
+        <input axis="y" lineWidth="2">dp</input>
+      </graph>
+      <value label="Atmosfer təzyiqi" size="1" precision="2" unit="hPa">
+        <input>pressure</input>
+      </value>
+      <info label="Telefonu yerdən başınızın hündürlüyünə qaldırın: Δp ≈ −20 Pa, Δh ≈ +1,7 m. Ölçmə zamanı telefonu tərpətməyin və qapıları açmayın."/>
+    </view>
+  </views>
+  <analysis sleep="0.2">
+    <first>
+      <input clear="false">pressure</input>
+      <output>p0</output>
+    </first>
+    <formula formula="([1_]-[2])*100">
+      <input clear="false">pressure</input>
+      <input clear="false">p0</input>
+      <output>dp</output>
+    </formula>
+    <formula formula="[1_]*-0.0849473">
+      <input clear="false">dp</input>
+      <output>dh</output>
+    </formula>
+  </analysis>
+  <export>
+    <set name="Təzyiq">
+      <data name="Vaxt (s)">p_time</data>
+      <data name="Təzyiq (hPa)">pressure</data>
+      <data name="Δp (Pa)">dp</data>
+      <data name="Δh (m)">dh</data>
+    </set>
+  </export>
+</phyphox>

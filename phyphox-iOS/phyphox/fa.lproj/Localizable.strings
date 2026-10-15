@@ -10,8 +10,8 @@
 "faqPhyphoxOrg" = "پرسش‌های متداول";
 "translationInfo" = "زبان‌ها";
 "translationToWebsite" = "بازدید از وبگاه";
-"app_name" = "فیفاکس";
-"title_activity_experiment" = "فیفاکس";
+"app_name" = "Elm Lab";
+"title_activity_experiment" = "Elm Lab";
 "newExperimentPhyphoxInfo" = "از phyphox.org دیدن کرده تا آزمایش‌های پیشرفته‌تری را شامل تجزیه و تحلیل داده‌ها ایجاد کنید و آن‌ها را با همکاران، شاگردان و دوستان خود به اشتراک بگذارید.";
 "newExperimentInputRate" = "نرخ نمونه‌برداری حسگر (به Hz، ۰ = سریع‌ترین حالت ممکن)";
 "donotshowagain" = "دوباره نمایش نده";
@@ -208,12 +208,12 @@
 "remoteColorMapWarning" = "The color plot in the remote interface is only an approximation. In contrast to the in-app plot, at the moment it cannot handle non-equidistant data or logarithmic scaling on the x and y axis. So, data at varying intervals may appear at the wrong location.";
 "networkPrivacyWarning" = "Privacy warning";
 "networkVisitPrivacyURL" = "Privacy policy";
-"networkPrivacyInfo" = "This experiment uses a network connection, which means that experiment data can be transmitted to a network service. You can find more details by clicking the privacy policy button below, which will take you to a website with a privacy policy provided by the creator of this experiment. If the network service is not a local device, you should be aware that phyphox may transmit the following information if you start this experiment:";
+"networkPrivacyInfo" = "This experiment uses a network connection, which means that experiment data can be transmitted to a network service. You can find more details by clicking the privacy policy button below, which will take you to a website with a privacy policy provided by the creator of this experiment. If the network service is not a local device, you should be aware that Elm Lab may transmit the following information if you start this experiment:";
 "networkPrivacyUniqueID" = "An id that is unique to this device and the network service, which allow to match all data send from this device through this experiment configuration.";
 "networkPrivacySensorData" = "Data from the following sensors:";
 "networkPrivacySensorMicrophone" = "Recordings or data derived from recordings from the microphone.";
 "networkPrivacySensorLocation" = "Location data (GPS data or similar).";
-"networkPrivacyDeviceInfo" = "Detailed information about the model of your device and/or the version of phyphox.";
+"networkPrivacyDeviceInfo" = "Detailed information about the model of your device and/or the version of Elm Lab.";
 "networkPrivacySensorInfo" = "Technical details about the following sensors:";
 "categoryPhyphoxOrg" = "Contribute to phyphox";
 "categoryPhyphoxOrgHint" = "There are new options to support phyphox at the bottom of the list.";

@@ -1,6 +1,6 @@
 "action_settings" = "設定";
-"app_name" = "手機物理實作";
-"title_activity_experiment" = "手機物理實作";
+"app_name" = "Elm Lab";
+"title_activity_experiment" = "Elm Lab";
 "newExperimentPhyphoxInfo" = "參考phyphox.org網站資訊，創建更好的手機物理實作實驗，包括數據分析，可與同事，學生和朋友分享。";
 "newExperimentInputTitle" = "標題";
 "newExperimentInputBufferSize" = "緩衝區大小(以數字表示取樣數)";
@@ -230,7 +230,7 @@
 "common_direction_short_south_west" = "西南";
 "actions" = "Actions";
 "gpl" = "Phyphox is open source software released under the GNU General Public Licence. Please visit http://phyphox.org for further information and to get access to its source code. However, the name \"phyphox\" and \"RWTH Aachen\" are registered trademarks.";
-"newExperimentBluetoothLoadFromDeviceInfo" = "This device provides its own phyphox experiment. Select \"load from device\" to open it.";
+"newExperimentBluetoothLoadFromDeviceInfo" = "This device provides its own Elm Lab experiment. Select \"load from device\" to open it.";
 "newExperimentQRCodesMissing2" = "codes. Please press continue to scan the remaining codes. Codes still missing:";
 "bt_exception_rate" = "Invalid value for \"rate\".";
 "categoryPhyphoxOrg" = "Contribute to phyphox";
