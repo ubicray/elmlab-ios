@@ -1,0 +1,148 @@
+# Release: archives the app and uploads it to TestFlight.
+#
+# Two jobs, so the App Store Connect key is only ever on the runner that needs it. `archive`
+# builds an unsigned archive and has no secrets at all. `upload` runs in the app-store
+# environment, which holds the key and waits for a reviewer's approval; it signs the archive with
+# Xcode's cloud-managed distribution certificate and sends it to App Store Connect, so there are
+# no certificates or provisioning profiles to keep anywhere.
+#
+# Secrets (app-store environment): ASC_KEY_ID, ASC_ISSUER_ID, and ASC_KEY_P8 - the .p8 file,
+# pasted as is or base64-encoded. The key needs a role that may use cloud-managed distribution
+# certificates (Admin).
+#
+# A version tag (v1.0.0) releases that version; a manual run asks for one. The build number is the
+# run number of this workflow, so every upload gets a new one. Pull requests that touch what the
+# archive depends on run the archive job only, as a check that the app still archives for devices.
+name: release
+on:
+  push:
+    tags: ['v*']
+  pull_request:
+    paths:
+      - .github/workflows/release.yml
+      - phyphox-iOS/phyphox.xcodeproj/**
+      - phyphox-iOS/phyphox/Info.plist
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version to release, like 1.0.0
+        required: true
+
+permissions:
+  contents: read
+
+# Never cancel a release half way: a cancelled upload can leave a build number used up.
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  TEAM_ID: 6RL63ZWLX3
+
+jobs:
+  archive:
+    runs-on: macos-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - name: Version and build number
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          case "$GITHUB_EVENT_NAME" in
+            push) VERSION="${GITHUB_REF_NAME#v}" ;;
+            workflow_dispatch) VERSION="$INPUT_VERSION" ;;
+            *) VERSION=0.0.0 ;;
+          esac
+          if ! [[ "$VERSION" =~ ^[0-9]+(\.[0-9]+){0,2}$ ]]; then
+            echo "::error::'$VERSION' is not a version like 1.0.0"
+            exit 1
+          fi
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "BUILD=$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
+
+      - name: Archive (unsigned)
+        run: |
+          set -euo pipefail
+          cd phyphox-iOS
+          # CFBundleVersion is a literal in Info.plist rather than a build setting
+          /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" phyphox/Info.plist
+          xcodebuild archive -project phyphox.xcodeproj -scheme phyphox -configuration Release \
+            -destination 'generic/platform=iOS' -archivePath "$RUNNER_TEMP/phyphox.xcarchive" \
+            MARKETING_VERSION="$VERSION" CODE_SIGNING_ALLOWED=NO
+
+      # ditto keeps the bundle's symlinks and permissions, which the artifact upload would not
+      - name: Pack the archive
+        if: github.event_name != 'pull_request'
+        run: ditto -c -k --keepParent "$RUNNER_TEMP/phyphox.xcarchive" "$RUNNER_TEMP/phyphox.xcarchive.zip"
+
+      - uses: actions/upload-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          name: xcarchive
+          path: ${{ runner.temp }}/phyphox.xcarchive.zip
+          retention-days: 3
+          if-no-files-found: error
+
+  upload:
+    if: github.event_name != 'pull_request'
+    needs: archive
+    runs-on: macos-latest
+    timeout-minutes: 30
+    environment: app-store
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: xcarchive
+          path: ${{ runner.temp }}
+
+      - name: Unpack the archive
+        run: ditto -x -k "$RUNNER_TEMP/phyphox.xcarchive.zip" "$RUNNER_TEMP"
+
+      - name: Sign and upload to TestFlight
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+        run: |
+          set -euo pipefail
+          for name in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do
+            if [ -z "${!name}" ]; then
+              echo "::error::The secret $name is not set in the app-store environment"
+              exit 1
+            fi
+          done
+
+          KEY="$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"
+          trap 'rm -f "$KEY"' EXIT
+          umask 077
+          if [[ "$ASC_KEY_P8" == -----BEGIN* ]]; then
+            printf '%s\n' "$ASC_KEY_P8" > "$KEY"
+          else
+            printf '%s' "$ASC_KEY_P8" | base64 --decode > "$KEY"
+          fi
+
+          cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>signingStyle</key><string>automatic</string>
+            <key>teamID</key><string>$TEAM_ID</string>
+            <key>uploadSymbols</key><true/>
+            <key>manageAppVersionAndBuildNumber</key><false/>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/phyphox.xcarchive" \
+            -exportOptionsPlist "$RUNNER_TEMP/ExportOptions.plist" -exportPath "$RUNNER_TEMP/export" \
+            -allowProvisioningUpdates -authenticationKeyPath "$KEY" \
+            -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID"

@@ -41,7 +41,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-BUNDLE = "de.rwth-aachen.physics.phyphox"
+BUNDLE = "com.abbasovel.elmlab"
 HOST = "127.0.0.1"  # the iOS simulator reaches the host directly
 
 
