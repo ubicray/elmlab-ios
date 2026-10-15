@@ -14,7 +14,7 @@ inputs:
     default: iPhone
   bundle:
     description: The app's bundle identifier
-    default: de.rwth-aachen.physics.phyphox
+    default: com.abbasovel.elmlab
   port:
     description: The port the warm-up launch serves remote access on
     default: '8080'
