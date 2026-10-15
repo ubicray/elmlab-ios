@@ -93,3 +93,30 @@ jobs:
           name: view-goldens
           path: phyphox-ios/phyphox-iOS/phyphoxTests/Snapshots/views
           retention-days: 7
+
+  # Hands the re-rendered goldens back as a commit on goldens/<branch>, for whoever is changing
+  # the look to review and take over into their branch. Runs no code from the branch itself.
+  goldens-branch:
+    needs: t0
+    if: failure() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: view-goldens
+          path: phyphox-iOS/phyphoxTests/Snapshots/views
+      - name: Push goldens/<branch>
+        env:
+          BRANCH: goldens/${{ github.head_ref }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add phyphox-iOS/phyphoxTests/Snapshots/views
+          git commit -m "Re-rendered view goldens" || { echo "No golden changed"; exit 0; }
+          git push --force origin "HEAD:refs/heads/$BRANCH"
