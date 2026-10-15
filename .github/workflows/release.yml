@@ -111,6 +111,11 @@ jobs:
           ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
         run: |
           set -euo pipefail
+          # A pasted secret easily picks up a space or a newline, and Apple then rejects the token
+          ASC_KEY_ID="$(printf '%s' "$ASC_KEY_ID" | tr -d '[:space:]')"
+          ASC_ISSUER_ID="$(printf '%s' "$ASC_ISSUER_ID" | tr -d '[:space:]')"
+          ASC_KEY_P8="${ASC_KEY_P8#"${ASC_KEY_P8%%[![:space:]]*}"}"
+          ASC_KEY_P8="${ASC_KEY_P8%"${ASC_KEY_P8##*[![:space:]]}"}"
           for name in ASC_KEY_ID ASC_ISSUER_ID ASC_KEY_P8; do
             if [ -z "${!name}" ]; then
               echo "::error::The secret $name is not set in the app-store environment"
@@ -124,8 +129,13 @@ jobs:
           if [[ "$ASC_KEY_P8" == -----BEGIN* ]]; then
             printf '%s\n' "$ASC_KEY_P8" > "$KEY"
           else
-            printf '%s' "$ASC_KEY_P8" | base64 --decode > "$KEY"
+            printf '%s' "$ASC_KEY_P8" | base64 --decode > "$KEY" 2>/dev/null || true
           fi
+          if ! head -1 "$KEY" | grep -q -- '-----BEGIN PRIVATE KEY-----'; then
+            echo "::error::ASC_KEY_P8 is not the .p8 file's contents (or that, base64-encoded)"
+            exit 1
+          fi
+          echo "Key ID has ${#ASC_KEY_ID} characters (Apple's are 10), issuer ID ${#ASC_ISSUER_ID} (Apple's are 36)"
 
           cat > "$RUNNER_TEMP/ExportOptions.plist" <<EOF
           <?xml version="1.0" encoding="UTF-8"?>
