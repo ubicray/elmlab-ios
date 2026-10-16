@@ -76,6 +76,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var mainNavViewController: ScalableViewController!
     var experimentsCollectionViewController: ExperimentsCollectionViewController!
 
+    override init() {
+        //Elm Lab: Azerbaijani on first launch, before anything is localized
+        ElmLab.applyDefaultLanguage()
+        super.init()
+    }
+
     func initApp(url: URL?) -> Bool {
         KeyboardTracker.startTracking()
 

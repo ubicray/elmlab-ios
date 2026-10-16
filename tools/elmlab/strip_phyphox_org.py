@@ -6,8 +6,11 @@ the archive, so the submodules themselves stay untouched upstream checkouts.
 - experiments of the special "phyphox.org" category (support / sensor database) are deleted
 - <link> elements pointing to phyphox.org are removed (root and translation blocks)
 - the demo experiments in tools/elmlab/demo_experiments are copied into the experiment collection
-- the web interface gets the Elm Lab logo and colours"""
-import re, pathlib, shutil
+- the web interface gets the Elm Lab logo and colours
+- the Azerbaijani terminology fixes of the Android fork (az_fixes.py there) are applied"""
+import re, pathlib, shutil, sys
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from import_android_strings import az_fix
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 EXP = ROOT / "phyphox-experiments"
 WEB = ROOT / "phyphox-webinterface"
@@ -24,6 +27,12 @@ print(f"experiments: {deleted} deleted, {links} phyphox.org links removed, left:
 for p in sorted(DEMOS.glob("*.phyphox")):
     shutil.copy(p, EXP / f"elmlab_demo_{p.name}")
 print(f"demo experiments added: {len(list(DEMOS.glob('*.phyphox')))}")
+fixed = 0
+for p in EXP.rglob("*.phyphox"):
+    s = p.read_text(encoding="utf-8")
+    s2 = re.sub(r'(<translation locale="az">)(.*?)(</translation>)', lambda m: m.group(1) + az_fix(m.group(2)) + m.group(3), s, flags=re.S)
+    if s2 != s: p.write_text(s2, encoding="utf-8"); fixed += 1
+print(f"az terminology fixed in {fixed} experiments")
 if WEB.is_dir():
     shutil.copy(ROOT / "tools/elmlab/assets/webinterface_logo.png", WEB / "phyphox_orange.png")
     css = WEB / "style.css"; c = css.read_text(encoding="utf-8")
