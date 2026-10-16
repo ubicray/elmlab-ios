@@ -5,10 +5,10 @@
   Created by Sebastian Kuhlen on 17.09.16.
   Copyright © 2016 RWTH Aachen. All rights reserved.
 */
-"NSMicrophoneUsageDescription" = "Phyphox graba audios con el micrófono y con otros sensores y los analiza de acuerdo con el experimento seleccionado. Los datos serán exportados desde el app solamente si el usuario elige hacerlo, usando la función \"exportar\".";
-"NSLocationWhenInUseUsageDescription" = "Phyphox graba información de localización del GPS como de otros sensores y los analiza de acuerdo con el experimento seleccionado. Los datos serán exportados desde el app solamente si el usuario elige hacerlo, usando la función \"exportar\".";
-"NSPhotoLibraryAddUsageDescription" = "Phyphox puede agregar imágenes de pantalla a la galería de fotos si usted selecciona \"compartir imagen\" en las opciones del experimento.";
-"NSMotionUsageDescription" = "Phyphox accede a los sensores del teléfono para que puedan ser usados en experimentos de física.";
-"NSBluetoothPeripheralUsageDescription" = "Phyphox tiene la capacidad de leer información de sensores Bluetooth periféricos y de mandar datos a dispositivos Bluetooth. Para saber más acerca de esto y los dispositivos incluidos en: http://phyphox.org/ble.";
-"NSBluetoothAlwaysUsageDescription" = "Phyphox tiene la capacidad de leer información de sensores Bluetooth periféricos y de mandar datos a dispositivos Bluetooth. Para saber más acerca de esto y los dispositivos incluidos en: http://phyphox.org/ble.";
-"NSCameraUsageDescription" = "Phyphox usa la cámara fotográfica para escanear códigos QR, los cuales pueden ser usados para agregar configuraciones de experimentos personalizados. También se usa en experimentos de profundidad (LiDAR/ToF) para suministrar medidas de distancia y mostrar áreas medidas.";
+"NSMicrophoneUsageDescription" = "Elm Lab graba audios con el micrófono y con otros sensores y los analiza de acuerdo con el experimento seleccionado. Los datos serán exportados desde el app solamente si el usuario elige hacerlo, usando la función \"exportar\".";
+"NSLocationWhenInUseUsageDescription" = "Elm Lab graba información de localización del GPS como de otros sensores y los analiza de acuerdo con el experimento seleccionado. Los datos serán exportados desde el app solamente si el usuario elige hacerlo, usando la función \"exportar\".";
+"NSPhotoLibraryAddUsageDescription" = "Elm Lab puede agregar imágenes de pantalla a la galería de fotos si usted selecciona \"compartir imagen\" en las opciones del experimento.";
+"NSMotionUsageDescription" = "Elm Lab accede a los sensores del teléfono para que puedan ser usados en experimentos de física.";
+"NSBluetoothPeripheralUsageDescription" = "Elm Lab tiene la capacidad de leer información de sensores Bluetooth periféricos y de mandar datos a dispositivos Bluetooth. Para saber más acerca de esto y los dispositivos incluidos en: http://phyphox.org/ble.";
+"NSBluetoothAlwaysUsageDescription" = "Elm Lab tiene la capacidad de leer información de sensores Bluetooth periféricos y de mandar datos a dispositivos Bluetooth. Para saber más acerca de esto y los dispositivos incluidos en: http://phyphox.org/ble.";
+"NSCameraUsageDescription" = "Elm Lab usa la cámara fotográfica para escanear códigos QR, los cuales pueden ser usados para agregar configuraciones de experimentos personalizados. También se usa en experimentos de profundidad (LiDAR/ToF) para suministrar medidas de distancia y mostrar áreas medidas.";

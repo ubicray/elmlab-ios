@@ -5,10 +5,10 @@
   Created by Sebastian Kuhlen on 17.09.16.
   Copyright © 2016 RWTH Aachen. All rights reserved.
 */
-"NSMicrophoneUsageDescription" = "phyphox rejestruje dźwięk za pomocą mikrofonu urządzenia i analizuje dane zgodnie z charakterem eksperymentu. Dane zostaną wyeksportowane z aplikacji wyłącznie po wybraniu stosownej komendy.";
-"NSLocationWhenInUseUsageDescription" = "phyphox rejestruje dane GPS dotyczące położenia i analizuje je zgodnie z charakterem eksperymentu. Dane zostanę wyeksportowane z aplikacji wyłącznie po wybraniu stosownej komendy.";
-"NSPhotoLibraryAddUsageDescription" = "phyphox dodaje pliki zrzutów ekranu jeśli wybrana jest opcja \"Współdziel zrzuty ekranu\" znajdująca się w menu eksperymentu.";
-"NSMotionUsageDescription" = "phyphox odczytuje wartości rejestrowane przez czujniki urządzenia i wykorzystuje je w eksperymentach fizycznych.";
-"NSCameraUsageDescription" = "phyphox używa kamery do skanowania kodów QR, które mogą być wykorzystane do dodania niestandardowych konfiguracji eksperymentu. Jest on również używany w eksperymentach z czujnikami głębokości (LiDAR/ToF), aby zapewnić pomiary odległości i pokazać podgląd regionu zainteresowania.";
-"NSBluetoothPeripheralUsageDescription" = "phyphox posiada możliwość odczytu z zewnętrznych czujników Bluetooth oraz zapisu danych do zewnętrznych urządzeń Bluetooth. Więcej o tej funkcji i obsługiwanych urządzeniach można dowiedzieć się na stronie http://phyphox.org/ble.";
-"NSBluetoothAlwaysUsageDescription" = "phyphox posiada możliwość odczytu z zewnętrznych czujników Bluetooth oraz zapisu danych do zewnętrznych urządzeń Bluetooth. Więcej o tej funkcji i obsługiwanych urządzeniach można dowiedzieć się na stronie http://phyphox.org/ble.";
+"NSMicrophoneUsageDescription" = "Elm Lab rejestruje dźwięk za pomocą mikrofonu urządzenia i analizuje dane zgodnie z charakterem eksperymentu. Dane zostaną wyeksportowane z aplikacji wyłącznie po wybraniu stosownej komendy.";
+"NSLocationWhenInUseUsageDescription" = "Elm Lab rejestruje dane GPS dotyczące położenia i analizuje je zgodnie z charakterem eksperymentu. Dane zostanę wyeksportowane z aplikacji wyłącznie po wybraniu stosownej komendy.";
+"NSPhotoLibraryAddUsageDescription" = "Elm Lab dodaje pliki zrzutów ekranu jeśli wybrana jest opcja \"Współdziel zrzuty ekranu\" znajdująca się w menu eksperymentu.";
+"NSMotionUsageDescription" = "Elm Lab odczytuje wartości rejestrowane przez czujniki urządzenia i wykorzystuje je w eksperymentach fizycznych.";
+"NSCameraUsageDescription" = "Elm Lab używa kamery do skanowania kodów QR, które mogą być wykorzystane do dodania niestandardowych konfiguracji eksperymentu. Jest on również używany w eksperymentach z czujnikami głębokości (LiDAR/ToF), aby zapewnić pomiary odległości i pokazać podgląd regionu zainteresowania.";
+"NSBluetoothPeripheralUsageDescription" = "Elm Lab posiada możliwość odczytu z zewnętrznych czujników Bluetooth oraz zapisu danych do zewnętrznych urządzeń Bluetooth. Więcej o tej funkcji i obsługiwanych urządzeniach można dowiedzieć się na stronie http://phyphox.org/ble.";
+"NSBluetoothAlwaysUsageDescription" = "Elm Lab posiada możliwość odczytu z zewnętrznych czujników Bluetooth oraz zapisu danych do zewnętrznych urządzeń Bluetooth. Więcej o tej funkcji i obsługiwanych urządzeniach można dowiedzieć się na stronie http://phyphox.org/ble.";

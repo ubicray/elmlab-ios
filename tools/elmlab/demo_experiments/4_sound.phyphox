@@ -1,0 +1,349 @@
+<phyphox version="1.20" locale="az">
+  <title>Səsin sürəti</title>
+  <category>Muzey nümayişi</category>
+  <icon format="base64">
+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
+    </icon>
+  <description>İki telefon zalda bir-birindən d məsafədə (10–15 m) qoyulur, hər ikisində bu təcrübə işə salınır.
+1) A telefonunun yanında bir nəfər əl çalır: hər iki saniyəölçən işə düşür, B-dəki bir az gec.
+2) B telefonunun yanında ikinci nəfər əl çalır: hər iki saniyəölçən dayanır, A-dakı bir az gec.
+Səs məsafəni iki dəfə qət etdiyindən: v = 2d / (t_A − t_B). Reaksiya vaxtı nəticəyə təsir etmir.
+
+Telefonlardan birində d məsafəsini və digər telefonun göstərdiyi vaxtı daxil edin, səsin sürəti hesablanacaq. 20 °C-də gözlənilən: 343 m/s.</description>
+  <translations>
+    <translation locale="tr">
+      <title>Sesin hızı</title>
+      <category>Müze gösterisi</category>
+      <description>İki telefon salonda birbirinden d mesafede (10–15 m) konur, ikisinde de bu deney başlatılır.
+1) A telefonunun yanında biri el çırpar: iki kronometre de başlar, B'deki biraz geç.
+2) B telefonunun yanında ikinci kişi el çırpar: iki kronometre de durur, A'daki biraz geç.
+Ses mesafeyi iki kez kat ettiği için: v = 2d / (t_A − t_B). Tepki süresi sonucu etkilemez.
+
+Telefonlardan birinde d mesafesini ve diğer telefonun gösterdiği süreyi girin, sesin hızı hesaplanır. 20 °C'de beklenen: 343 m/s.</description>
+      <string original="Ölçmə">Ölçüm</string>
+      <string original="Səsin sürəti">Sesin hızı</string>
+      <string original="Bu telefonun vaxtı">Bu telefonun süresi</string>
+      <string original="Sıfırla">Sıfırla</string>
+      <string original="Telefonlar arası məsafə d">Telefonlar arası mesafe d</string>
+      <string original="Digər telefonun vaxtı">Diğer telefonun süresi</string>
+      <string original="Havanın temperaturu">Hava sıcaklığı</string>
+      <string original="Gözlənilən (nəzəri)">Beklenen (teorik)</string>
+      <string original="Həssaslıq həddi">Hassasiyet eşiği</string>
+      <string original="Minimum fasilə">Minimum aralık</string>
+      <string original="Zalda əks-səda saniyəölçəni vaxtından əvvəl dayandırırsa, həssaslıq həddini artırın. Əl çalmaları qısa və kəskin olsun.">Salondaki yankı kronometreyi erken durduruyorsa hassasiyet eşiğini artırın. El çırpmaları kısa ve keskin olsun.</string>
+    </translation>
+  </translations>
+  <data-containers>
+    <container clearGroup="Settings">threshold</container>
+    <container clearGroup="Settings">mindelay</container>
+    <container>distance</container>
+    <container size="16384">recording</container>
+    <container>rate</container>
+    <container>i</container>
+    <container>skip</container>
+    <container>last</container>
+    <container size="0">events</container>
+    <container size="0">tlist</container>
+    <container size="0">dtlist</container>
+    <container size="0">tindex</container>
+    <container size="1">tcount</container>
+    <container size="1">tcount-1</container>
+    <container>avgInterval</container>
+    <container>avgRate</container>
+    <container>avgBPM</container>
+    <container>t0</container>
+    <container>t1</container>
+    <container>t2</container>
+    <container>t3</container>
+    <container>t4</container>
+    <container>t5</container>
+    <container>t0effective</container>
+    <container>t1effective</container>
+    <container>t2effective</container>
+    <container>t3effective</container>
+    <container>t4effective</container>
+    <container>t5effective</container>
+    <container>tmax</container>
+    <container>dt01</container>
+    <container>dt02</container>
+    <container>dt03</container>
+    <container>dt04</container>
+    <container>dt05</container>
+    <container>dt12</container>
+    <container>dt23</container>
+    <container>dt34</container>
+    <container>dt45</container>
+    <container>count</container>
+      <container clearGroup="Settings">d_m</container>
+    <container clearGroup="Settings">t_other</container>
+    <container clearGroup="Settings">temp_c</container>
+    <container>v_sound</container>
+    <container>v_theory</container>
+  </data-containers>
+  <input>
+    <audio>
+      <output>recording</output>
+      <output component="rate">rate</output>
+    </audio>
+  </input>
+  <views>
+    <view label="Ölçmə">
+      <value label="Bu telefonun vaxtı" size="3" precision="3" unit="s">
+        <input>dt01</input>
+      </value>
+      <button label="Sıfırla">
+        <input type="empty"/>
+        <output>events</output>
+        <input type="value">0</input>
+        <output>i</output>
+      </button>
+      <separator height="1"/>
+      <edit label="Telefonlar arası məsafə d" unit="m" default="10" signed="false">
+        <output>d_m</output>
+      </edit>
+      <edit label="Digər telefonun vaxtı" unit="s" default="0" signed="false" decimal="true">
+        <output>t_other</output>
+      </edit>
+      <value label="Səsin sürəti" size="3" precision="0" unit="m/s">
+        <input>v_sound</input>
+      </value>
+      <separator height="1"/>
+      <edit label="Havanın temperaturu" unit="°C" default="20" signed="true" decimal="true">
+        <output>temp_c</output>
+      </edit>
+      <value label="Gözlənilən (nəzəri)" size="2" precision="0" unit="m/s">
+        <input>v_theory</input>
+      </value>
+      <separator height="1"/>
+      <edit label="Həssaslıq həddi" unit="" default="0.2" signed="false" min="0" max="1">
+        <output>threshold</output>
+      </edit>
+      <edit label="Minimum fasilə" unit="s" default="0.1" signed="false">
+        <output>mindelay</output>
+      </edit>
+      <info label="Zalda əks-səda saniyəölçəni vaxtından əvvəl dayandırırsa, həssaslıq həddini artırın. Əl çalmaları qısa və kəskin olsun."/>
+    </view>
+  </views>
+  <analysis sleep="0.05">
+    <multiply>
+      <input keep="true">mindelay</input>
+      <input keep="true">rate</input>
+      <output>distance</output>
+    </multiply>
+    <eventstream mode="aboveAbsolute">
+      <input as="data">recording</input>
+      <input as="threshold" keep="true">threshold</input>
+      <input as="distance" keep="true">distance</input>
+      <input as="index">i</input>
+      <input as="skip">skip</input>
+      <input as="last">last</input>
+      <output as="events" append="true">events</output>
+      <output as="index">i</output>
+      <output as="skip">skip</output>
+      <output as="last">last</output>
+    </eventstream>
+    <append>
+      <input keep="true">events</input>
+      <input keep="true">i</input>
+      <output>tlist</output>
+    </append>
+    <divide>
+      <input>tlist</input>
+      <input keep="true">rate</input>
+      <output>tlist</output>
+    </divide>
+    <differentiate>
+      <input clear="false">tlist</input>
+      <output>dtlist</output>
+    </differentiate>
+    <average>
+      <input clear="false">dtlist</input>
+      <output>avgInterval</output>
+    </average>
+    <divide>
+      <input type="value">1</input>
+      <input clear="false">avgInterval</input>
+      <output>avgRate</output>
+    </divide>
+    <multiply>
+      <input clear="false">avgRate</input>
+      <input type="value">60</input>
+      <output>avgBPM</output>
+    </multiply>
+    <append>
+      <input type="value">0</input>
+      <output clear="false">dtlist</output>
+    </append>
+    <count>
+      <input clear="false">tlist</input>
+      <output>tcount</output>
+    </count>
+    <subtract>
+      <input clear="false">tcount</input>
+      <input type="value">1</input>
+      <output>tcount-1</output>
+    </subtract>
+    <ramp>
+      <input as="start" type="value">0</input>
+      <input as="stop">tcount-1</input>
+      <input as="length">tcount</input>
+      <output>tindex</output>
+    </ramp>
+    <divide>
+      <input clear="false">i</input>
+      <input clear="false">rate</input>
+      <output>tmax</output>
+    </divide>
+    <const>
+      <output>t0</output>
+    </const>
+    <const>
+      <output>t1</output>
+    </const>
+    <const>
+      <output>t2</output>
+    </const>
+    <const>
+      <output>t3</output>
+    </const>
+    <const>
+      <output>t4</output>
+    </const>
+    <const>
+      <output>t5</output>
+    </const>
+    <subrange>
+      <input as="from" type="value">0</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t0</output>
+    </subrange>
+    <subrange>
+      <input as="from" type="value">1</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t1</output>
+    </subrange>
+    <subrange>
+      <input as="from" type="value">2</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t2</output>
+    </subrange>
+    <subrange>
+      <input as="from" type="value">3</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t3</output>
+    </subrange>
+    <subrange>
+      <input as="from" type="value">4</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t4</output>
+    </subrange>
+    <subrange>
+      <input as="from" type="value">5</input>
+      <input as="length" type="value">1</input>
+      <input as="in" clear="false">tlist</input>
+      <output clear="false">t5</output>
+    </subrange>
+    <if less="true" equal="true">
+      <input clear="false">t5</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t5</input>
+      <output>t5effective</output>
+    </if>
+    <if less="true" equal="true">
+      <input clear="false">t4</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t4</input>
+      <output>t4effective</output>
+    </if>
+    <if less="true" equal="true">
+      <input clear="false">t3</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t3</input>
+      <output>t3effective</output>
+    </if>
+    <if less="true" equal="true">
+      <input clear="false">t2</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t2</input>
+      <output>t2effective</output>
+    </if>
+    <if less="true" equal="true">
+      <input clear="false">t1</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t1</input>
+      <output>t1effective</output>
+    </if>
+    <if less="true" equal="true">
+      <input clear="false">t0</input>
+      <input type="value">0</input>
+      <input clear="false">tmax</input>
+      <input clear="false">t0</input>
+      <output>t0effective</output>
+    </if>
+    <subtract>
+      <input clear="false">t5effective</input>
+      <input clear="false">t4effective</input>
+      <output>dt45</output>
+    </subtract>
+    <subtract>
+      <input clear="false">t4effective</input>
+      <input clear="false">t3effective</input>
+      <output>dt34</output>
+    </subtract>
+    <subtract>
+      <input clear="false">t3effective</input>
+      <input clear="false">t2effective</input>
+      <output>dt23</output>
+    </subtract>
+    <subtract>
+      <input clear="false">t2effective</input>
+      <input clear="false">t1effective</input>
+      <output>dt12</output>
+    </subtract>
+    <subtract>
+      <input>t5effective</input>
+      <input clear="false">t0effective</input>
+      <output>dt05</output>
+    </subtract>
+    <subtract>
+      <input>t4effective</input>
+      <input clear="false">t0effective</input>
+      <output>dt04</output>
+    </subtract>
+    <subtract>
+      <input>t3effective</input>
+      <input clear="false">t0effective</input>
+      <output>dt03</output>
+    </subtract>
+    <subtract>
+      <input>t2effective</input>
+      <input clear="false">t0effective</input>
+      <output>dt02</output>
+    </subtract>
+    <subtract>
+      <input>t1effective</input>
+      <input>t0effective</input>
+      <output>dt01</output>
+    </subtract>
+      <formula formula="sqrt((2*[1]/([2]-[3]))^2)*heaviside([3]-0.0000001)/heaviside([3]-0.0000001)">
+      <input keep="true">d_m</input>
+      <input clear="false">dt01</input>
+      <input keep="true">t_other</input>
+      <output>v_sound</output>
+    </formula>
+    <formula formula="331.3+0.606*[1]">
+      <input keep="true">temp_c</input>
+      <output>v_theory</output>
+    </formula>
+  </analysis>
+</phyphox>

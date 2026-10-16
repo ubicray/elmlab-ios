@@ -22,6 +22,7 @@ on:
       - .github/workflows/release.yml
       - phyphox-iOS/phyphox.xcodeproj/**
       - phyphox-iOS/phyphox/Info.plist
+      - tools/elmlab/**
   workflow_dispatch:
     inputs:
       version:
@@ -65,6 +66,11 @@ jobs:
           fi
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "BUILD=$GITHUB_RUN_NUMBER" >> "$GITHUB_ENV"
+
+      # Elm Lab: no phyphox.org experiments or links, the museum's demo experiments, and the Elm Lab
+      # look for the remote-access page. Changes only this checkout of the submodules.
+      - name: Elm Lab experiments and web interface
+        run: python3 tools/elmlab/strip_phyphox_org.py
 
       - name: Archive (unsigned)
         run: |

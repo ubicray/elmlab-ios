@@ -1,7 +1,7 @@
-"app_name" = "phyphox";
+"app_name" = "Elm Lab";
 "actions" = "Działania";
 "action_settings" = "Ustawienia";
-"title_activity_experiment" = "phyphox";
+"title_activity_experiment" = "Elm Lab";
 "newExperiment" = "Dodaj eksperyment";
 "newExperimentPhyphoxInfo" = "Aby przygotować zaawansowane doświadczenia zawierające analizę danych oraz by dzielić się doświadczeniami z innymi odwiedź stronę phyphox.org.";
 "newExperimentInputTitle" = "Tytuł";
@@ -10,7 +10,7 @@
 "newExperimentInputSensors" = "Aktywne czujniki";
 "warning" = "Uwaga";
 "donotshowagain" = "Nie pokazuj ponownie";
-"damageWarning" = "Postępuj rozważnie by nie uszkodzić swojego telefony podczas eksperymentu. Zadbaj, by telefon nie spadł na twarde podłoże i nie był narażony na działanie znacznego pola magnetycznego. Autorzy phyphox'a nie odpowiadają za szkody powstałe podczas doświadczeń z telefonem.";
+"damageWarning" = "Postępuj rozważnie by nie uszkodzić swojego telefony podczas eksperymentu. Zadbaj, by telefon nie spadł na twarde podłoże i nie był narażony na działanie znacznego pola magnetycznego. Autorzy Elm Lab'a nie odpowiadają za szkody powstałe podczas doświadczeń z telefonem.";
 "credits" = "Autorzy";
 "creditsRWTH" = "phyphox powstał w II Instytucie Fizyki Uniwersytetu RWTH w Aachen.";
 "creditsNames" = "Koncepcja i rozwój:\nDr. Sebastian Staacks\nKoncepcja:\nProf. Christoph Stampfer\nProgramowanie:\nGaurav Tripathee\nDominik Dorsel\nJonas Gessner\nCamilla Lummerzheim";
@@ -52,10 +52,10 @@
 "enableTimedRun" = "Włącz czas sesji";
 "disableTimedRun" = "Wyłącz czas sesji";
 "export" = "Eksportuj dane";
-"export_subject" = "Dane z phyphox'a";
+"export_subject" = "Dane z Elm Lab'a";
 "export_pick_share" = "Wybierz metodę eksportowania";
 "share" = "Udostępnij zrzut ekranu";
-"share_subject" = "Zrzut ekranu z phyphox'a";
+"share_subject" = "Zrzut ekranu z Elm Lab'a";
 "share_pick_share" = "Wybierz metodę udostępniania";
 "switch_to_calibrated_magnetometer" = "Przełącz do kalibrowanego magnetometru (czujnika pola magnetycznego)";
 "switch_to_raw_magnetometer" = "Przełącz do niekalibrowanego magnetometru";
@@ -80,7 +80,7 @@
 "save_state_title" = "Tytuł";
 "save_state_save" = "Do zbioru";
 "save_state_share" = "Udostępnij";
-"save_state_subject" = "Status eksperymentu dla phyphox'a";
+"save_state_subject" = "Status eksperymentu dla Elm Lab'a";
 "save_state_default_title" = "Pomiary";
 "save_state_success" = "Status został zapisany w twoim zbiorze.";
 "timedRun" = "Czas trwania";
@@ -142,11 +142,11 @@
 "newExperimentBluetooth" = "Dodaj eksperyment dla urządzenia Bluetooth";
 "newExperimentBluetoothErrorTitle" = "Błąd skanowania Bluetooth";
 "newExperimentBluetoothLoadFromDevice" = "Załaduj z urządzenia";
-"newExperimentBluetoothLoadFromDeviceInfo" = "To urządzenie zawiera dedykowany eksperyment phyphox. Wybierz załaduj z urządzenia, aby je otworzyć.";
+"newExperimentBluetoothLoadFromDeviceInfo" = "To urządzenie zawiera dedykowany eksperyment Elm Lab. Wybierz załaduj z urządzenia, aby je otworzyć.";
 "newExperimentQR" = "Dodaj eksperyment z kodu QR";
 "newExperimentQRscan" = "Skanuj kod QR zawierający eksperyment.";
 "newExperimentQRErrorTitle" = "Błąd kodu QR.";
-"newExperimentQRNoExperiment" = "Nie można odnaleźć kodu QR, który zawiera eksperyment phyphox.";
+"newExperimentQRNoExperiment" = "Nie można odnaleźć kodu QR, który zawiera eksperyment Elm Lab.";
 "newExperimentQRcrcMismatch" = "Zeskanowany kod QR wydaje się nie pasować do poprzednich kodów. Upewnij się, że skanujesz tylko kody należące do tego samego eksperymentu.";
 "newExperimentQRCodesMissing1" = "Zeskanowany kod QR jest częścią zestawu";
 "newExperimentQRCodesMissing2" = "kodów. Wybierz Kontynuuj by zeskanować pozostałe kody. Kody brakujące:";
@@ -158,7 +158,7 @@
 "open_zip_dialog_instructions" = "Ten zbiór zawiera wiele doświadczeń. Możesz wybrać jedno, aby je otworzyć i opcjonalnie zapisz je w swoim zbiorze lub użyj przycisku poniżej, aby zapisać je w zbiorze wszystkie jednocześnie.";
 "open_save_all" = "Zapisz wszystkie";
 "open_bluetooth_assets_title" = "Doświadczenia z urządzeniem Bluetooth";
-"open_bluetooth_assets" = "Następujące eksperymenty dla twojego urządzenia są dostępne w aplikacji phyphox. Możesz po prostu je otworzyć i wykonać lub dodać je do swojego zbioru, aby uzyskać do nich łatwy dostęp z głównego menu.";
+"open_bluetooth_assets" = "Następujące eksperymenty dla twojego urządzenia są dostępne w aplikacji Elm Lab. Możesz po prostu je otworzyć i wykonać lub dodać je do swojego zbioru, aby uzyskać do nich łatwy dostęp z głównego menu.";
 "bluetooth" = "Bluetooth Low Energy";
 "bt_pick_device" = "Proszę wybierz urządzenie.";
 "bt_scanning_generic" = "Wyszukiwanie urządzeń Bluetooth…";
@@ -191,7 +191,7 @@
 "bt_error_discovering" = "Błąd podczas wykrywania usług urządzenia Bluetooth.";
 "bt_fail_reading" = "Operacja odczytu zakończona niepowodzeniem.";
 "bt_fail_writing" = "Operacja zapisu zakończona niepowodzeniem.";
-"bt_more_info_link_text" = "Jeśli twoje urządzenie nie jest obsługiwane, wybierz \"więcej informacji\", aby dowiedzieć się więcej o obsłudze technologii Bluetooth Low Energy w aplikacji phyphox na naszej stronie.";
+"bt_more_info_link_text" = "Jeśli twoje urządzenie nie jest obsługiwane, wybierz \"więcej informacji\", aby dowiedzieć się więcej o obsłudze technologii Bluetooth Low Energy w aplikacji Elm Lab na naszej stronie.";
 "bt_more_info_link_button" = "Więcej informacji";
 "bt_more_info_link_url" = "https://phyphox.org/ble-pl";
 "common_unit_short_arbitrary_unit" = "jed. umowna";
@@ -204,12 +204,12 @@
 "toggleBrightMode" = "Tryb jasny";
 "networkPrivacyWarning" = "Ostrzeżenie dot. prywatności";
 "networkVisitPrivacyURL" = "Polityka prywatności";
-"networkPrivacyInfo" = "W doświadczeniu wykorzystywane jest połączenia sieciowego. Oznacza to, że dane mogą być przesyłane do sieci. Więcej informacji można znaleźć po kliknięciu przycisku polityki prywatności poniżej, który przeniesie Cię na stronę internetową zawierającą informacje udostępnioną przez autora doświadczenia. Jeśli usługi sieciowa nie znajduje się na urządzeniu lokalnym, należy mieć świadomość, że po uruchomieniu tego doświadczenia aplikacja Phyphox może przesyłać następujące informacje:";
+"networkPrivacyInfo" = "W doświadczeniu wykorzystywane jest połączenia sieciowego. Oznacza to, że dane mogą być przesyłane do sieci. Więcej informacji można znaleźć po kliknięciu przycisku polityki prywatności poniżej, który przeniesie Cię na stronę internetową zawierającą informacje udostępnioną przez autora doświadczenia. Jeśli usługi sieciowa nie znajduje się na urządzeniu lokalnym, należy mieć świadomość, że po uruchomieniu tego doświadczenia aplikacja Elm Lab może przesyłać następujące informacje:";
 "networkPrivacyUniqueID" = "Dodaj unikatowy identyfikator dla tego urządzenia oraz usługi sieciowej, który umożliwia powiązanie wszystkich danych wysyłanych z tego urządzenia w ramach konfiguracji eksperymentu.";
 "networkPrivacySensorData" = "Dane z następujących czujników:";
 "networkPrivacySensorMicrophone" = "Nagranie lub dane z nagrania z użyciem mikrofonu.";
 "networkPrivacySensorLocation" = "Położenie (dane GPS lub adekwatne).";
-"networkPrivacyDeviceInfo" = "Szczegółowe informacje nt. modelu urządzenia oraz wersji aplikacji Phyphox.";
+"networkPrivacyDeviceInfo" = "Szczegółowe informacje nt. modelu urządzenia oraz wersji aplikacji Elm Lab.";
 "networkPrivacySensorInfo" = "Dane techniczne czujników:";
 "categoryPhyphoxOrg" = "Wesprzyj Phyphox";
 "categoryPhyphoxOrgHint" = "Nowe opcje wspierania Phyphox znajdują się na dole listy.";

@@ -1,8 +1,8 @@
 
 
-"app_name" = "phyphox";
+"app_name" = "Elm Lab";
 "action_settings" = "Postavke";
-"title_activity_experiment" = "phyphox";
+"title_activity_experiment" = "Elm Lab";
 "graph_tools_pan_and_zoom" = "Pomicanje i zumiranje";
 "graph_tools_pick" = "Izaberite podatke";
 "graph_tools_more" = "Više alata";
@@ -22,7 +22,7 @@
 "newExperimentInputSensors" = "Aktivni senzori";
 "warning" = "Upozorenje";
 "donotshowagain" = "Ne prikazuj ponovno";
-"damageWarning" = "Molim Vas budite oprezni kako ne bi ste oštetili vaš telefon tijekom pokusa. Molim Vas posebno pazite da ga ne ispustite na tvrde površine i da ga ne izlažete prejakim magnetskim poljima. Autori phyphox-a nisu odgovorni za eventualna oštećenja Vašeg telefona.";
+"damageWarning" = "Molim Vas budite oprezni kako ne bi ste oštetili vaš telefon tijekom pokusa. Molim Vas posebno pazite da ga ne ispustite na tvrde površine i da ga ne izlažete prejakim magnetskim poljima. Autori Elm Lab-a nisu odgovorni za eventualna oštećenja Vašeg telefona.";
 "info" = "Informacije";
 "credits" = "Bodovi";
 "creditsNames" = "Razvoj i koncept:\nDr. Sebastian Staacks\nKoncept:\nProf. Christoph Stampfer\nProgramiranje:\nGaurav Tripathee\nDominik Dorsel\nJonas Gessner\nCamilla Lummerzheim";
@@ -110,9 +110,9 @@
 "newExperimentBluetoothErrorTitle" = "pogreška Bluetooth skeniranja";
 "newExperimentBluetoothLoadFromDevice" = "Učitajte s uređaja";
 "newExperimentQR" = "Dodajte pokus iz QR koda";
-"newExperimentQRscan" = "Skenirajte QR kod koji sadrži phyphox pokus.";
+"newExperimentQRscan" = "Skenirajte QR kod koji sadrži Elm Lab pokus.";
 "newExperimentQRErrorTitle" = "pogreška QR koda.";
-"newExperimentQRNoExperiment" = "Nije pronađen QR kod koji sadrži phyphox pokus.";
+"newExperimentQRNoExperiment" = "Nije pronađen QR kod koji sadrži Elm Lab pokus.";
 "newExperimentQRcrcMismatch" = "Izgleda da QR kod koji ste upravo skenirali ne odgovara prihašnjim kodovima. Molim Vas da skenirate samo kodove koji pripadaju istom pokusu.";
 "newExperimentQRCodesMissing1" = "QR koji ste upravo skenirali je dio seta od";
 "newExperimentQRCodesMissing2" = "kodova. Molim Vas da pritisnete nastavi kako bi ste skenirali preostale kodove. Kodovi koji još nedostaju:";
@@ -139,7 +139,7 @@
 "save_state_title" = "Naslov";
 "save_state_save" = "U kolekciju";
 "save_state_share" = "Podijeli";
-"save_state_subject" = "Stanje pokusa za phyphox";
+"save_state_subject" = "Stanje pokusa za Elm Lab";
 "save_state_default_title" = "Mjerenje";
 "save_state_success" = "Stanje je spremljeno u Vašu kolekciju.";
 "timedRun" = "Mjereno izvođenje";
@@ -158,7 +158,7 @@
 "open_zip_dialog_instructions" = "Ovaj izvor sadrži više pokusa. Možete odabrati jedan radi otvaranja, ili spremanja u Vašu kolekciju, ili spremiti ih sve, odjednom, u Vašu kolekciju koristeći dugme ispod.";
 "open_save_all" = "Spremite sve";
 "open_bluetooth_assets_title" = "Pokusi za Bluetooth uređaj";
-"open_bluetooth_assets" = "Phyphox omogućuje sljedeće pokuse za Vaš uređaj. Možete ih jednostavno otvoriti i koristiti ili ih dodati u Vašu kolekciju radi jednostavnog pristupa iz glavnog izbornika.";
+"open_bluetooth_assets" = "Elm Lab omogućuje sljedeće pokuse za Vaš uređaj. Možete ih jednostavno otvoriti i koristiti ili ih dodati u Vašu kolekciju radi jednostavnog pristupa iz glavnog izbornika.";
 "bluetooth" = "Bluetooth Niske Energije";
 "bt_pick_device" = "Molim Vas odaberite uređaj.";
 "bt_scanning_generic" = "Traženje Bluetooth uređaja…";
@@ -195,7 +195,7 @@
 "bt_more_info_link_url" = "https://phyphox.org/ble";
 "networkPrivacyWarning" = "Upozorenje o privatnosti";
 "networkVisitPrivacyURL" = "Politika privatnosti";
-"networkPrivacyInfo" = "Ovaj pokus koristi mrežnu vezu, što znači da se podatci pokusa mogu prenijeti na mrežnu uslugu. Više detalja možete pronaći klikom na dugme smjernice za privatnost ispod, koje će vas odvesti na web lokaciju s politikom privatnosti koju je stvorio autor ovog pokusa. Ako mrežna usluga nije lokalni uređaj, trebali biste biti svjesni da phyphox može prenijeti sljedeće informacije ako pokrenete ovaj pokus:";
+"networkPrivacyInfo" = "Ovaj pokus koristi mrežnu vezu, što znači da se podatci pokusa mogu prenijeti na mrežnu uslugu. Više detalja možete pronaći klikom na dugme smjernice za privatnost ispod, koje će vas odvesti na web lokaciju s politikom privatnosti koju je stvorio autor ovog pokusa. Ako mrežna usluga nije lokalni uređaj, trebali biste biti svjesni da Elm Lab može prenijeti sljedeće informacije ako pokrenete ovaj pokus:";
 "networkPrivacyUniqueID" = "ID koji je jedinstven za ovaj uređaj i mrežnu uslugu, koji omogućuju podudaranje svih podataka poslanih s ovog uređaja kroz ovu konfiguraciju pokusa.";
 "networkPrivacySensorData" = "Podaci iz sljedećeg senzora:";
 "networkPrivacySensorMicrophone" = "Snimke ili podaci izvedeni iz snimki s mikrofona.";
@@ -339,7 +339,7 @@
 "url_invalid" = "Neispravan URL";
 "url_invalid_msg" = "Ovaj je pokus samo poveznica, ali nije pronađen ispravan URL.";
 "AudioRateMissmatch" = "Pogreška: Neusklađenost brzine uzorkovanja. Molimo Vas onemogućite aplikacije ili usluge (poput AirPlay-a) koje prisiljavaju drugačije brzine uzorkovanje zvuka.";
-"newExperimentBluetoothLoadFromDeviceInfo" = "Ovaj uređaj pruža vlastiti phyphox pokus. Odaberite \"učitaj s uređaja\" kako bi ste ga otvorili.";
+"newExperimentBluetoothLoadFromDeviceInfo" = "Ovaj uređaj pruža vlastiti Elm Lab pokus. Odaberite \"učitaj s uređaja\" kako bi ste ga otvorili.";
 "showQRCodeForRemoteURL" = "QR kod za pristup URL-u";
 "bt_exception_rate" = "Neispravna vrijednost za \"stopa\".";
 "select" = "--izbor--";

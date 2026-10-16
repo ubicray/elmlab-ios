@@ -1,7 +1,7 @@
-"app_name" = "फीफॉक्स";
+"app_name" = "Elm Lab";
 "apple_ban" = "यह प्रयोग अब उपलब्ध नहीं है।";
 "action_settings" = "सेटिंग्स";
-"title_activity_experiment" = "फाईफॉक्स";
+"title_activity_experiment" = "Elm Lab";
 "graph_tools_pan_and_zoom" = "ऊँगली से ज़ूम";
 "graph_tools_pick" = "डाटा उठाएं";
 "graph_tools_more" = "और अधिक टूल्स";
@@ -135,7 +135,7 @@
 "remotePhyphoxOrgURL" = "http://phyphox.org/remote-control";
 "AudioRateMissmatch" = "त्रुटि: सैंपलिंग रेट बेमेल है। कृपया किसी भी ऐप या सेवा (जैसे एयरप्ले) को डिसएबल करें जो एक अलग ऑडियो सैंपलिंग रेट को बाध्य करती है।";
 "translationInfo" = "Languages";
-"translationText" = "Phyphox will use the first language available from your preferred languages list in your system settings. To learn which languages are available and how you can help, select \"visit website\".";
+"translationText" = "Elm Lab will use the first language available from your preferred languages list in your system settings. To learn which languages are available and how you can help, select \"visit website\".";
 "translationToSettings" = "Settings";
 "translationToWebsite" = "Visit website";
 "translationToWebsiteURL" = "http://phyphox.org/languages#en";

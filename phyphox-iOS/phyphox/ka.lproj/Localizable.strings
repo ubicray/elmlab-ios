@@ -1,8 +1,8 @@
 
 
-"app_name" = "ფაიფოქსი";
+"app_name" = "Elm Lab";
 "action_settings" = "პარამეტრები";
-"title_activity_experiment" = "ფაიფოქსი";
+"title_activity_experiment" = "Elm Lab";
 "newExperimentSimple" = "დაამატე მარტივი ექსპერიმენტი";
 "newExperimentPhyphoxInfo" = "ეწვიე phyphox.org ვებგვერდს უფრო რთული ექსპერიმენტების შესაქმენლად, მანაცებეის ანალიზის ჩათვლით და გაუზიარე კოლეგებს, სტუდენტებს და მეგობრებს.";
 "newExperimentInputTitle" = "დასახელება";
