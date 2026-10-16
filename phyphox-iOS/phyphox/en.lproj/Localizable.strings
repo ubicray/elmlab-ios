@@ -410,3 +410,41 @@
 /* Accessibility labels for the two ends of a range slider */
 "rangeSliderLowerValue" = "Lower value";
 "rangeSliderUpperValue" = "Upper value";
+
+/* Elm Lab (tools/elmlab/import_android_strings.py) */
+"elmlabMuseum" = "Elm Lab is the physics experiments app of Elçin Abbasov's Interactive Science Museum. The museum began in 1998 with equipment and experiments built in a workshop. Since 2018 it has been operating at Hədəf Lyceum at the lyceum's invitation. The museum's second branch is at the Azerbaijan State Pedagogical University (ADPU). Today the museum has more than 150 working interactive exhibits on science and engineering. Our main idea: we can show most physical processes. With Elm Lab, your phone becomes a physics lab in your pocket.\n\nAddress:\n1. Hədəf Stars International Campus, Baku, Mikayil Mushfig 2E\n2. Azerbaijan State Pedagogical University, 68 U. Hajibeyli St.\nPhone: +994 55 202 41 15\n\nElm Lab:\nElçin Abbasov — idea and management\nElmar Abbasov — programmer";
+"elmlabAttribution" = "Elm Lab is based on the open-source app phyphox (© Dr. Sebastian Staacks, RWTH Aachen University) and is distributed under the GNU GPL v3 without any warranty. Source code: github.com/ubicray/elmlab-ios. \"phyphox\" and \"RWTH Aachen\" are registered trademarks; Elm Lab is not affiliated with them.";
+"elmlabDemoHeading" = "Museum demonstrations";
+"elmlabDemoPressureTitle" = "Air pressure: head and feet";
+"elmlabDemoPressureSub" = "Δp ≈ 20 Pa over your height";
+"elmlabDemoWeightlessTitle" = "Weightlessness";
+"elmlabDemoWeightlessSub" = "A thrown object is weightless in flight";
+"elmlabDemoCarTitle" = "Car acceleration";
+"elmlabDemoCarSub" = "Forward acceleration in m/s² and g";
+"elmlabDemoSoundTitle" = "Speed of sound";
+"elmlabDemoSoundSub" = "With two phones, right in this hall";
+"elmlabToolsHeading" = "Tools";
+"elmlabToolToneTitle" = "Tone generator";
+"elmlabToolToneSub" = "Generate a sound of any frequency";
+"elmlabToolStrobeTitle" = "Flashlight stroboscope";
+"elmlabToolStrobeSub" = "The flashlight blinks at a set frequency";
+"elmlabToolPendulumTitle" = "Pendulum";
+"elmlabToolPendulumSub" = "Period of a pendulum and measuring g";
+"elmlabToolStopwatchTitle" = "Acoustic stopwatch";
+"elmlabToolStopwatchSub" = "Time between two sounds";
+"elmlabSensorHeading" = "Sensors";
+"elmlabSensorAccTitle" = "Acceleration with g";
+"elmlabSensorAccSub" = "Including gravity, 3 axes";
+"elmlabSensorLinTitle" = "Acceleration (without g)";
+"elmlabSensorLinSub" = "Acceleration from motion only";
+"elmlabSensorGyrTitle" = "Gyroscope (angular velocity)";
+"elmlabSensorGyrSub" = "Angular velocity around 3 axes";
+"elmlabSensorMagTitle" = "Magnetometer";
+"elmlabSensorMagSub" = "Magnetic flux density, µT";
+"elmlabSensorPreTitle" = "Pressure";
+"elmlabSensorPreSub" = "Barometer: air pressure, hPa";
+"elmlabSensorLigTitle" = "Light";
+"elmlabSensorLigSub" = "Illuminance, lux";
+"elmlabSensorGpsTitle" = "Location (GPS)";
+"elmlabSensorGpsSub" = "Coordinates, altitude, speed";
+/* End Elm Lab */

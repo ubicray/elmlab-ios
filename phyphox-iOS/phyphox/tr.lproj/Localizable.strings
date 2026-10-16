@@ -332,3 +332,41 @@
 "depthAggregationModeAverage" = "Average";
 "sensorDepth" = "Depth (LiDAR)";
 "depthAggregationModeWeighted" = "Weighted";
+
+/* Elm Lab (tools/elmlab/import_android_strings.py) */
+"elmlabMuseum" = "Elm Lab, Elçin Abbasov'un İnteraktif Bilim Müzesi'nin fizik deneyleri uygulamasıdır. Müze, 1998 yılında atölyede hazırlanan donanım ve deneylerle başladı. 2018'den beri Hədəf Lisesi'nin daveti üzerine orada faaliyet gösteriyor. Müzenin 2. şubesi ADPU'da (Azerbaycan Devlet Pedagoji Üniversitesi) bulunuyor. Bugün müzede bilim ve mühendislikle ilgili 150'den fazla çalışan interaktif sergi var. Temel fikrimiz: fiziksel süreçlerin çoğunu gösterebiliyoruz. Elm Lab ile telefonunuz cebinizdeki bir fizik laboratuvarına dönüşür.\n\nAdres:\n1. Hədəf Stars International Campus, Bakü, Mikayıl Müşfiq 2E\n2. Azerbaycan Devlet Pedagoji Üniversitesi, Ü. Hacıbeyli Cad. No: 68\nTel.: +994 55 202 41 15\n\nElm Lab:\nElçin Abbasov — fikir ve yönetim\nElmar Abbasov — programcı";
+"elmlabAttribution" = "Elm Lab, açık kaynaklı phyphox uygulaması (© Dr. Sebastian Staacks, RWTH Aachen Üniversitesi) temel alınarak geliştirilmiştir ve GNU GPL v3 lisansı ile hiçbir garanti verilmeden dağıtılmaktadır. Kaynak kodu: github.com/ubicray/elmlab-ios. «phyphox» ve «RWTH Aachen» tescilli markalardır; Elm Lab bunlarla bağlantılı değildir.";
+"elmlabDemoHeading" = "Müze gösterileri";
+"elmlabDemoPressureTitle" = "Hava basıncı: baş ve ayak";
+"elmlabDemoPressureSub" = "Boyunuz kadar yükseklikte Δp ≈ 20 Pa";
+"elmlabDemoWeightlessTitle" = "Ağırlıksızlık";
+"elmlabDemoWeightlessSub" = "Atılan cisim tüm uçuş boyunca ağırlıksızdır";
+"elmlabDemoCarTitle" = "Otomobilin ivmesi";
+"elmlabDemoCarSub" = "İleri ivme, m/s² ve g cinsinden";
+"elmlabDemoSoundTitle" = "Sesin hızı";
+"elmlabDemoSoundSub" = "İki telefonla, tam bu salonda";
+"elmlabToolsHeading" = "Araçlar";
+"elmlabToolToneTitle" = "Ton üreteci";
+"elmlabToolToneSub" = "İstediğiniz frekansta ses üretin";
+"elmlabToolStrobeTitle" = "Fener stroboskobu";
+"elmlabToolStrobeSub" = "Fener belirlenen frekansta yanıp söner";
+"elmlabToolPendulumTitle" = "Sarkaç";
+"elmlabToolPendulumSub" = "Sarkacın periyodu ve g'nin ölçülmesi";
+"elmlabToolStopwatchTitle" = "Akustik kronometre";
+"elmlabToolStopwatchSub" = "İki ses arasındaki süreyi ölçün";
+"elmlabSensorHeading" = "Sensörler";
+"elmlabSensorAccTitle" = "g ile ivme";
+"elmlabSensorAccSub" = "Yerçekimi dahil, 3 eksende";
+"elmlabSensorLinTitle" = "İvme (g olmadan)";
+"elmlabSensorLinSub" = "Yalnızca hareketten doğan ivme";
+"elmlabSensorGyrTitle" = "Jiroskop (açısal hız)";
+"elmlabSensorGyrSub" = "Her eksen etrafında açısal hız";
+"elmlabSensorMagTitle" = "Manyetometre";
+"elmlabSensorMagSub" = "Manyetik akı yoğunluğu, µT";
+"elmlabSensorPreTitle" = "Basınç";
+"elmlabSensorPreSub" = "Barometre: hava basıncı, hPa";
+"elmlabSensorLigTitle" = "Işık";
+"elmlabSensorLigSub" = "Aydınlanma, lüks";
+"elmlabSensorGpsTitle" = "Konum (GPS)";
+"elmlabSensorGpsSub" = "Koordinat, yükseklik, hız";
+/* End Elm Lab */

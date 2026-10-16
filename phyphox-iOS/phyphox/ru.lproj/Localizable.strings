@@ -337,3 +337,41 @@
 "sensorCamera" = "Камера";
 "cameraFrontFacing" = "Фронтальная камера";
 "cameraBackFacing" = "Основная камера";
+
+/* Elm Lab (tools/elmlab/import_android_strings.py) */
+"elmlabMuseum" = "Elm Lab — приложение для физических экспериментов Интерактивного научного музея Эльчина Аббасова. Музей начался в 1998 году с оборудования и экспериментов, изготовленных в мастерской. С 2018 года по приглашению лицея «Hədəf» он работает на его территории. Второй филиал музея находится в АГПУ. Сегодня в музее более 150 действующих интерактивных экспонатов по науке и технике. Наша главная идея: мы можем показать большинство физических процессов. С Elm Lab ваш телефон превращается в физическую лабораторию в кармане.\n\nАдрес:\n1. Hədəf Stars International Campus, Баку, ул. Микаила Мушфига, 2E\n2. Азербайджанский государственный педагогический университет, ул. У. Гаджибейли, 68\nТел.: +994 55 202 41 15\n\nElm Lab:\nЭльчин Аббасов — идея и руководство\nЭльмар Аббасов — программист";
+"elmlabAttribution" = "Elm Lab создан на основе приложения с открытым исходным кодом phyphox (© Dr. Sebastian Staacks, RWTH Aachen University) и распространяется по лицензии GNU GPL v3 без каких-либо гарантий. Исходный код: github.com/ubicray/elmlab-ios. «phyphox» и «RWTH Aachen» — зарегистрированные товарные знаки; Elm Lab с ними не связан.";
+"elmlabDemoHeading" = "Музейные демонстрации";
+"elmlabDemoPressureTitle" = "Давление воздуха: голова и ноги";
+"elmlabDemoPressureSub" = "Δp ≈ 20 Па на высоте роста";
+"elmlabDemoWeightlessTitle" = "Невесомость";
+"elmlabDemoWeightlessSub" = "Брошенное тело невесомо весь полёт";
+"elmlabDemoCarTitle" = "Ускорение автомобиля";
+"elmlabDemoCarSub" = "Ускорение вперёд в м/с² и g";
+"elmlabDemoSoundTitle" = "Скорость звука";
+"elmlabDemoSoundSub" = "Двумя телефонами, прямо в этом зале";
+"elmlabToolsHeading" = "Инструменты";
+"elmlabToolToneTitle" = "Генератор тона";
+"elmlabToolToneSub" = "Звук любой частоты";
+"elmlabToolStrobeTitle" = "Стробоскоп-фонарик";
+"elmlabToolStrobeSub" = "Фонарик мигает с заданной частотой";
+"elmlabToolPendulumTitle" = "Маятник";
+"elmlabToolPendulumSub" = "Период маятника и измерение g";
+"elmlabToolStopwatchTitle" = "Акустический секундомер";
+"elmlabToolStopwatchSub" = "Время между двумя звуками";
+"elmlabSensorHeading" = "Датчики";
+"elmlabSensorAccTitle" = "Ускорение с g";
+"elmlabSensorAccSub" = "С учётом силы тяжести, по 3 осям";
+"elmlabSensorLinTitle" = "Ускорение (без g)";
+"elmlabSensorLinSub" = "Только ускорение движения";
+"elmlabSensorGyrTitle" = "Гироскоп (угловая скорость)";
+"elmlabSensorGyrSub" = "Угловая скорость вокруг 3 осей";
+"elmlabSensorMagTitle" = "Магнитометр";
+"elmlabSensorMagSub" = "Индукция магнитного поля, мкТл";
+"elmlabSensorPreTitle" = "Давление";
+"elmlabSensorPreSub" = "Барометр: атмосферное давление, гПа";
+"elmlabSensorLigTitle" = "Свет";
+"elmlabSensorLigSub" = "Освещённость, лк";
+"elmlabSensorGpsTitle" = "Местоположение (GPS)";
+"elmlabSensorGpsSub" = "Координаты, высота, скорость";
+/* End Elm Lab */

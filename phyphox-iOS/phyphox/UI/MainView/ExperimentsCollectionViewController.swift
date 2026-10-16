@@ -83,6 +83,8 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavbar()
+        //The Elm Lab home screen has its own header
+        navigationController?.setNavigationBarHidden(true, animated: animated)
 
         //Launch-argument seam: with -phyphoxBleConnect the app goes looking for that device as
         //soon as it has a screen to show the transfer's progress in
@@ -114,55 +116,82 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
     }
 
     @objc func showHelpMenu(_ item: UIBarButtonItem) {
-    
+        //Elm Lab: credits and settings only, as on Android (the other entries lead to phyphox.org)
+        let source: UIView = elmLabHome?.infoButton ?? infoButton!
         UIAlertController.PhyphoxUIAlertBuilder()
             .title(title: localize("help"))
             .message(message: nil)
             .preferredStyle(style: .actionSheet)
             .addActionWithTitle(localize("credits"), style: .default, handler: infoPressed)
-            .addActionWithTitle(localize("experimentsPhyphoxOrg"), style: .default, handler: { _ in
-                UIApplication.shared.open(URL(string: localize("experimentsPhyphoxOrgURL"))!)
-            })
-            .addActionWithTitle(localize("faqPhyphoxOrg"), style: .default, handler:{ _ in
-                UIApplication.shared.open(URL(string: localize("faqPhyphoxOrgURL"))!)
-            })
-            .addActionWithTitle(localize("remotePhyphoxOrg"), style: .default, handler: { _ in
-                UIApplication.shared.open(URL(string: localize("remotePhyphoxOrgURL"))!)
-            })
             .addActionWithTitle(localize("settings"), style: .default, handler: { _ in
                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                     return
                 }
                 UIApplication.shared.open(settingsUrl)
             })
-            .addActionWithTitle(localize("deviceInfo"), style: .default, handler: { _ in
-                
-                let msg =  self.buildDeviceInfoMessage()
-                
-                UIAlertController.PhyphoxUIAlertBuilder()
-                    .title(title: localize("deviceInfo"))
-                    .message(message: msg)
-                    .preferredStyle(style: .alert)
-                    .addActionWithTitle(localize("copyToClipboard"), style: .default, handler: { _ in
-                        UIPasteboard.general.string = msg
-                        self.dismiss(animated: true, completion: nil)
-                    })
-                    .addCancelAction()
-                    .show(in: self.navigationController!, animated: true, completion: nil)
-                
-            })
-            .sourceView(popoverSourceView: infoButton)
-            .sourceRect(popoverSourceRect: infoButton!.frame)
+            .sourceView(popoverSourceView: source)
+            .sourceRect(popoverSourceRect: source.bounds)
             .addCancelAction()
             .show(in: self, animated: true)
-        
-         
     }
-    
+
+    //MARK: - Elm Lab home screen
+
+    ///The illustrated cards over the (hidden) phyphox list, as on Android
+    private var elmLabHome: ElmLabHomeView?
+
+    private func bundledExperiment(named file: String) -> Experiment? {
+        for collection in collections {
+            for entry in collection.experiments where !entry.custom && entry.experiment.source?.lastPathComponent == file {
+                return entry.experiment
+            }
+        }
+        return nil
+    }
+
+    ///The cards whose experiment is there and whose sensors this device has (Android hides the
+    ///others the same way)
+    private func availableElmLabSections() -> [ElmLabSection] {
+        return ElmLab.sections.map { section in
+            ElmLabSection(heading: section.heading, cards: section.cards.filter { card in
+                guard let experiment = bundledExperiment(named: card.file) else { return false }
+                for sensor in experiment.sensorInputs where !sensor.ignoreUnavailable {
+                    if (try? sensor.verifySensorAvailibility()) == nil { return false }
+                }
+                return true
+            })
+        }
+    }
+
+    private func setUpElmLabHome() {
+        let home = ElmLabHomeView(sections: availableElmLabSections())
+        home.onSelect = { [weak self] card in
+            guard let self = self, let experiment = self.bundledExperiment(named: card.file) else { return }
+            self.openExperiment(experiment)
+        }
+        home.onInfo = { [weak self] in
+            self?.showHelpMenu(UIBarButtonItem())
+        }
+        home.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(home)
+        NSLayoutConstraint.activate([
+            home.topAnchor.constraint(equalTo: view.topAnchor),
+            home.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            home.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            home.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+        elmLabHome = home
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "phyphox"
+        self.title = localize("app_name")
         
         reload()
         
@@ -183,6 +212,8 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
         //Android
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
         selfView.collectionView.addGestureRecognizer(longPress)
+
+        setUpElmLabHome()
 
         let defaults = UserDefaults.standard
         let key = "donotshowagain"
@@ -361,6 +392,7 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
         exitSelectionMode()
         collections = ExperimentManager.shared.experimentCollections
         selfView.collectionView.reloadData()
+        elmLabHome?.sections = availableElmLabSections()
     }
 
     //MARK: - Multi-select deletion
@@ -725,17 +757,22 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
             return
         }
 
-        if experiment.experiment.invalid {
+        openExperiment(experiment.experiment)
+    }
+
+    ///Opens an experiment from the list or from an Elm Lab card, after checking that it can run here
+    func openExperiment(_ experiment: Experiment) {
+        if experiment.invalid {
             UIAlertController.PhyphoxUIAlertBuilder()
                 .title(title: localize("warning"))
-                .message(message: experiment.experiment.localizedDescription)
+                .message(message: experiment.localizedDescription)
                 .preferredStyle(style: .alert)
                 .addOkAction()
                 .show(in: self, animated: true)
     
             return
             
-        } else if experiment.experiment.appleBan {
+        } else if experiment.appleBan {
             
             /* Apple does not want us to reveal to the user that the experiment has been deactivated by their request. So we may not even show an info button...
              controller.addAction(UIAlertAction(title: localize("appleBanWarningMoreInfo"), style: .default, handler:{ _ in
@@ -752,8 +789,8 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
             
             return
             
-        } else if experiment.experiment.isLink {
-            guard let url = experiment.experiment.localizedLinks.first?.url else {
+        } else if experiment.isLink {
+            guard let url = experiment.localizedLinks.first?.url else {
                 
                 UIAlertController.PhyphoxUIAlertBuilder()
                     .title(title: localize("url_invalid"))
@@ -768,7 +805,7 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
             return
         }
         
-        for sensor in experiment.experiment.sensorInputs {
+        for sensor in experiment.sensorInputs {
             do {
                 if !sensor.ignoreUnavailable {
                     try sensor.verifySensorAvailibility()
@@ -776,49 +813,49 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
             }
             catch SensorError.sensorUnavailable(let type) {
                 
-                let state = experiment.experiment.stateTitle ?? ""
-                let title = experiment.experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
-                let message = localize("sensorNotAvailableWarningText1") + " \(type.getLocalizedName()) " + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (experiment.experiment.localizedDescription ?? "") */
+                let state = experiment.stateTitle ?? ""
+                let title = experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
+                let message = localize("sensorNotAvailableWarningText1") + " \(type.getLocalizedName()) " + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (experiment.localizedDescription ?? "") */
                 
-                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.experiment.localizedLinks)
+                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.localizedLinks)
             
                 return
             }
             catch {}
         }
         
-        if experiment.experiment.cameraInput != nil {
+        if experiment.cameraInput != nil {
             do{
                 try ExperimentCameraInput.verifySensorAvaibility()
             } catch CameraInputError.sensorUnavailable{
-                let state = experiment.experiment.stateTitle ?? ""
-                let title = experiment.experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
+                let state = experiment.stateTitle ?? ""
+                let title = experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
                 let message =  localize("cameraNotAvailableWarningText")
                 
-                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.experiment.localizedLinks)
+                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.localizedLinks)
                 return
             }
             
             catch{}
         }
         
-        if experiment.experiment.depthInput != nil {
+        if experiment.depthInput != nil {
             do {
                 try ExperimentDepthInput.verifySensorAvailibility(cameraOrientation: nil)
             }
             catch DepthInputError.sensorUnavailable {
-                let state = experiment.experiment.stateTitle ?? ""
-                let title = experiment.experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
-                let message =  localize("sensorNotAvailableWarningText1")  + localize("sensorDepth") + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (experiment.experiment.localizedDescription ?? "") */
+                let state = experiment.stateTitle ?? ""
+                let title = experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
+                let message =  localize("sensorNotAvailableWarningText1")  + localize("sensorDepth") + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (experiment.localizedDescription ?? "") */
                 
-                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.experiment.localizedLinks)
+                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.localizedLinks)
          
                 return
             }
             catch {}
         }
 
-        let vc = ExperimentPageViewController(experiment: experiment.experiment)
+        let vc = ExperimentPageViewController(experiment: experiment)
 
         //Fold the large-title collapse into the push transition: pushed with the bar still
         //expanded, the whole large-title area shows as a block of the experiment page's opaque

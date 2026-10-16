@@ -43,7 +43,8 @@ final class CreditsView: UIView {
         
         creditsRWTH = UILabel()
         creditsRWTH.numberOfLines = 0
-        creditsRWTH.text = localize("creditsRWTH")
+        //Elm Lab: the museum first, then the phyphox credits
+        creditsRWTH.text = localize("elmlabMuseum") + "\n\n" + localize("creditsRWTH")
         creditsRWTH.font = UIFont.systemFont(ofSize: fontSize)
         creditsRWTH.textColor = kRWTHTextColor
         
@@ -55,7 +56,7 @@ final class CreditsView: UIView {
         
         creditsGPL = UILabel()
         creditsGPL.numberOfLines = 0
-        creditsGPL.text = localize("gpl")
+        creditsGPL.text = localize("gpl") + "\n\n" + localize("elmlabAttribution")
         creditsGPL.font = UIFont.systemFont(ofSize: fontSize)
         creditsGPL.textColor = kRWTHTextColor
         
