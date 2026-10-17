@@ -1,11 +1,13 @@
 #!/bin/bash
 # App Store screenshots of Elm Lab, taken in a simulator (macOS only).
 #
-#   screenshots.sh APP OUTPUT DEVICE LOCALE...
+#   screenshots.sh APP OUTPUT DEVICE LANGUAGE LOCALE...
 #
 # APP is the built simulator .app, DEVICE "ipad" (iPad Pro 13-inch) or "iphone" (the newest
-# Pro Max), LOCALE an App Store Connect locale such as en-US. Writes OUTPUT/<locale>/<n>-<name>.png
-# at the device's native size, which is what App Store Connect takes for that set:
+# Pro Max), LANGUAGE the app's language in the screenshots (az, en, ...), and LOCALE an App Store
+# Connect locale such as en-US. The same screenshots go to every LOCALE, as
+# OUTPUT/<locale>/<device>-<n>-<name>.png at the device's native size, which is what App Store Connect takes
+# for that set:
 #
 #   1-home           the home screen
 #   2-acceleration   acceleration with g, a phone bouncing on a spring
@@ -16,7 +18,7 @@
 # AppDelegate.swift), so no UI test is involved.
 set -euo pipefail
 
-APP="$1"; OUTPUT="$2"; DEVICE="$3"; shift 3
+APP="$1"; OUTPUT="$2"; DEVICE="$3"; LANGUAGE="$4"; shift 4
 HERE="$(cd "$(dirname "$0")" && pwd)"
 BUNDLE_ID="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist")"
 
@@ -51,27 +53,32 @@ DOCUMENTS="$(xcrun simctl get_app_container "$UDID" "$BUNDLE_ID" data)/Documents
 mkdir -p "$DOCUMENTS"
 cp "$STATES"/*.phyphox "$DOCUMENTS/"
 
+SHOTS="$(mktemp -d)"
 shoot() {
-  local locale="$1" name="$2"; shift 2
-  local language="${locale%%-*}" region="${locale#*-}"
-  [ "$region" = "$locale" ] && region="$(echo "$language" | tr '[:lower:]' '[:upper:]')"
+  local name="$1"; shift
+  local region; region="$(echo "$LANGUAGE" | tr '[:lower:]' '[:upper:]')"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" 2>/dev/null || true
+xcrun simctl shutdown "$UDID"
   # The damage warning on the home screen and the hint bubbles on an experiment are for first-time
   # users and would cover the screenshot
   xcrun simctl launch "$UDID" "$BUNDLE_ID" \
-    -AppleLanguages "($language)" -AppleLocale "${language}_$region" \
+    -AppleLanguages "($LANGUAGE)" -AppleLocale "${LANGUAGE}_$region" \
     -donotshowagain YES -experiment_start_hint_dismiss_count 3 -experiment_info_hint_dismiss_count 3 \
     "$@" >/dev/null
   sleep 8
-  mkdir -p "$OUTPUT/$locale"
-  xcrun simctl io "$UDID" screenshot --type=png "$OUTPUT/$locale/$name.png" >/dev/null
-  echo "$locale/$name.png"
+  xcrun simctl io "$UDID" screenshot --type=png "$SHOTS/$name.png" >/dev/null
+  echo "$name.png"
 }
 
+shoot 1-home
+shoot 2-acceleration -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/accelerometer.phyphox"
+shoot 3-gyroscope -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/gyroscope.phyphox"
 for locale in "$@"; do
-  shoot "$locale" 1-home
-  shoot "$locale" 2-acceleration -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/accelerometer.phyphox"
-  shoot "$locale" 3-gyroscope -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/gyroscope.phyphox"
+  mkdir -p "$OUTPUT/$locale"
+  for shot in "$SHOTS"/*.png; do
+    cp "$shot" "$OUTPUT/$locale/$DEVICE-$(basename "$shot")"
+  done
 done
 
 xcrun simctl terminate "$UDID" "$BUNDLE_ID" 2>/dev/null || true
+xcrun simctl shutdown "$UDID"
