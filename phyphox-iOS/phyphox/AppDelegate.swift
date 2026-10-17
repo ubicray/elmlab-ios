@@ -45,6 +45,10 @@ import UIKit
 //                             connection setup, so the network fixture experiments cannot run
 //                             without this. It skips no user choice and no system permission
 //                             dialog, which the app cannot dismiss anyway.
+//  -elmlabSensors <a,b,...>    shows the Elm Lab home screen cards for these sensors (SensorType
+//                             names, such as accelerometer,pressure) even where the device lacks
+//                             them, for App Store screenshots taken in the simulator, which has no
+//                             motion sensors. Opening such a card still checks the real sensor.
 //
 //Example:
 //xcrun simctl launch <udid> de.rwth-aachen.physics.phyphox -phyphoxUrl "phyphox://asset=accelerometer.phyphox" -phyphoxRemote
@@ -66,6 +70,9 @@ enum AutomationLaunchOptions {
 
     ///The Bluetooth device to take an experiment from, for the compatibility suite
     static let bluetoothDeviceName: String? = value(after: "-phyphoxBleConnect")
+
+    ///Sensors whose Elm Lab home screen cards are shown even without the sensor, for screenshots
+    static let elmLabSensors: Set<String> = Set((value(after: "-elmlabSensors") ?? "").split(separator: ",").map(String.init))
 }
 
 @UIApplicationMain

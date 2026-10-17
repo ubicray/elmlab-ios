@@ -155,7 +155,7 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
         return ElmLab.sections.map { section in
             ElmLabSection(heading: section.heading, cards: section.cards.filter { card in
                 guard let experiment = bundledExperiment(named: card.file) else { return false }
-                for sensor in experiment.sensorInputs where !sensor.ignoreUnavailable {
+                for sensor in experiment.sensorInputs where !sensor.ignoreUnavailable && !AutomationLaunchOptions.elmLabSensors.contains(sensor.sensorType.rawValue) {
                     if (try? sensor.verifySensorAvailibility()) == nil { return false }
                 }
                 return true

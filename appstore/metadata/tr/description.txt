@@ -1,0 +1,25 @@
+Elm Lab, iPhone veya iPad'inizi bir fizik laboratuvarına dönüştürür. Bilim ve mühendisliğin nasıl işlediğini 150'den fazla çalışan sergiyle gösteren, Elçin Abbasov'un Bakü'deki İnteraktif Bilim Müzesi'nin deney uygulamasıdır.
+
+SENSÖRLER
+• Yerçekimi dahil ve hariç ivme, 3 eksende
+• Jiroskop: 3 eksen etrafında açısal hız
+• Manyetometre: µT cinsinden manyetik akı yoğunluğu
+• Barometre: hPa cinsinden hava basıncı
+• Konum: koordinat, yükseklik ve hız
+
+ARAÇLAR
+• Ton üreteci: istediğiniz frekansta ses
+• Fener stroboskobu
+• Sarkaç: periyot ve g'nin ölçülmesi
+• Akustik kronometre: iki ses arasındaki süre
+
+MÜZE GÖSTERİLERİ
+Müzenin kendi gösterilerinden deneyler: baş ile ayak arasındaki hava basıncı farkı, serbest düşüşte ağırlıksızlık, bir otomobilin ivmesi ve iki telefonla ölçülen sesin hızı.
+
+KAYDET VE ANALİZ ET
+Ölçümü başlatın, grafikleri canlı izleyin, yakınlaştırın ve verilerinizi bir tabloya aktarın. Deneyi aynı Wi-Fi ağındaki bir bilgisayarın tarayıcısından yönetin.
+
+DERSLER İÇİN
+Hesap yok, reklam yok, takip yok. Elm Lab kişisel veri toplamaz. Azerbaycanca, İngilizce, Rusça, Türkçe ve diğer dillerde.
+
+Elm Lab, açık kaynaklı phyphox uygulaması (© Dr. Sebastian Staacks, RWTH Aachen Üniversitesi) temel alınarak geliştirilmiştir ve GNU GPL v3 lisansı ile dağıtılmaktadır. Kaynak kodu: https://github.com/ubicray/elmlab-ios. «phyphox» ve «RWTH Aachen» tescilli markalardır; Elm Lab bunlarla bağlantılı değildir.
