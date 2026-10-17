@@ -27,9 +27,9 @@ def spring(t, rng):
     a = 0.0
     if t > 1.5:
         a = 4.2 * math.exp(-(t - 1.5) / 3.5) * math.sin(2 * math.pi * 1.3 * (t - 1.5))
-    x = 0.12 * a + rng.gauss(0, 0.04)
-    y = -0.08 * a + rng.gauss(0, 0.04)
-    z = 9.81 + a + rng.gauss(0, 0.05)
+    x = 0.12 * a + rng.gauss(0, 0.012)
+    y = -0.08 * a + rng.gauss(0, 0.012)
+    z = 9.81 + a + rng.gauss(0, 0.02)
     return x, y, z
 
 
@@ -38,9 +38,9 @@ def pendulum(t, rng):
     w = 0.0
     if t > 1.0:
         w = 2.6 * math.exp(-(t - 1.0) / 9) * math.sin(2 * math.pi * (t - 1.0) / 1.55)
-    x = w + rng.gauss(0, 0.01)
-    y = 0.04 * w + rng.gauss(0, 0.01)
-    z = 0.02 * math.sin(2 * math.pi * t / 7) + rng.gauss(0, 0.01)
+    x = w + rng.gauss(0, 0.004)
+    y = 0.04 * w + rng.gauss(0, 0.002)
+    z = -0.03 * w + 0.01 * math.sin(2 * math.pi * t / 7) + rng.gauss(0, 0.002)
     return x, y, z
 
 

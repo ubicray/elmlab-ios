@@ -70,9 +70,12 @@ xcrun simctl shutdown "$UDID"
   echo "$name.png"
 }
 
-shoot 1-home
+# A freshly booted simulator shows system notification banners for a while
+sleep 30
 shoot 2-acceleration -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/accelerometer.phyphox"
 shoot 3-gyroscope -phyphoxAutoConfirm -phyphoxUrl "file://$DOCUMENTS/gyroscope.phyphox"
+# The cards a phone shows: the simulator has none of these sensors, a phone has all but light
+shoot 1-home -elmlabSensors accelerometer,linear_acceleration,gyroscope,magnetic_field,pressure
 for locale in "$@"; do
   mkdir -p "$OUTPUT/$locale"
   for shot in "$SHOTS"/*.png; do
