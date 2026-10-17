@@ -1,0 +1,150 @@
+# Store listing: takes the App Store screenshots and sends the listing changes in appstore/ to App
+# Store Connect (tools/appstore/asc.py says what is sent and what is left alone).
+#
+# A pull request that touches the listing checks the texts and takes the screenshots, and pushes
+# small previews of them to the branch appstore-screenshots/<branch> for review, since the
+# artifacts cannot be opened without signing in. A manual run (Actions > store > Run workflow)
+# also sends everything to App Store Connect, from the app-store environment, which waits for a
+# reviewer's approval and holds the key. Submitting for review and releasing stay manual, in App
+# Store Connect.
+name: store
+on:
+  pull_request:
+    paths:
+      - .github/workflows/store.yml
+      - appstore/**
+      - tools/appstore/**
+  workflow_dispatch:
+    inputs:
+      version:
+        description: App Store version to change, like 1.1.0
+        required: true
+        default: 1.1.0
+
+permissions:
+  contents: read
+
+concurrency:
+  group: store-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  # Only the iPad set is missing in App Store Connect; the iPhone set there was made by hand
+  DEVICE: ipad
+  LOCALES: en-US ru tr
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - run: python3 tools/appstore/asc.py check
+
+  screenshots:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+          persist-credentials: false
+
+      - uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/spm
+          key: spm-${{ runner.os }}-${{ hashFiles('phyphox-iOS/phyphox.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: spm-${{ runner.os }}-
+
+      # The same experiments and web interface as the release build
+      - name: Elm Lab experiments and web interface
+        run: python3 tools/elmlab/strip_phyphox_org.py
+
+      - name: Build for the simulator
+        run: |
+          set -euo pipefail
+          cd phyphox-iOS
+          xcodebuild build -project phyphox.xcodeproj -scheme phyphox -configuration Release \
+            -destination 'generic/platform=iOS Simulator' -derivedDataPath "$RUNNER_TEMP/dd" \
+            -clonedSourcePackagesDirPath "$GITHUB_WORKSPACE/spm" \
+            MARKETING_VERSION="${{ inputs.version || '1.1.0' }}" CODE_SIGNING_ALLOWED=NO
+          APP=$(find "$RUNNER_TEMP/dd/Build/Products/Release-iphonesimulator" -maxdepth 1 -name '*.app' | head -1)
+          test -n "$APP"
+          echo "APP=$APP" >> "$GITHUB_ENV"
+
+      - name: Screenshots
+        run: |
+          set -euo pipefail
+          # shellcheck disable=SC2086
+          tools/appstore/screenshots.sh "$APP" "$RUNNER_TEMP/screenshots" "$DEVICE" $LOCALES
+          python3 tools/appstore/asc.py check --screenshots "$RUNNER_TEMP/screenshots"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/screenshots
+          retention-days: 7
+          if-no-files-found: error
+
+  # Small JPEG copies on a branch of their own, for reviewing the screenshots in a pull request.
+  # Runs no code from the branch.
+  previews:
+    needs: screenshots
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: screenshots
+          path: screenshots
+      - name: Push appstore-screenshots/<branch>
+        env:
+          BRANCH: appstore-screenshots/${{ github.head_ref }}
+          REPOSITORY: ${{ github.repository }}
+          TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet "pillow==11.3.0"
+          python3 - <<'EOF'
+          import pathlib
+          from PIL import Image
+          for png in sorted(pathlib.Path("screenshots").glob("*/*.png")):
+              out = pathlib.Path("previews") / png.relative_to("screenshots").with_suffix(".jpg")
+              out.parent.mkdir(parents=True, exist_ok=True)
+              image = Image.open(png).convert("RGB")
+              image.thumbnail((600, 600))
+              image.save(out, quality=80)
+          EOF
+          cd previews
+          git init -q -b preview
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -qm "App Store screenshot previews"
+          git push --force "https://x-access-token:$TOKEN@github.com/$REPOSITORY.git" "HEAD:refs/heads/$BRANCH"
+
+  listing:
+    needs: [check, screenshots]
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: app-store
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: screenshots
+          path: ${{ runner.temp }}/screenshots
+      - run: python3 -m pip install --quiet "pyjwt[crypto]==2.10.1"
+      - name: Send the listing to App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+          VERSION: ${{ inputs.version }}
+        run: python3 tools/appstore/asc.py listing --version "$VERSION" --screenshots "$RUNNER_TEMP/screenshots"

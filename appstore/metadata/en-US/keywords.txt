@@ -1,0 +1,1 @@
+physics,science,experiment,sensor,accelerometer,gyroscope,magnetometer,barometer,pendulum,school
