@@ -58,7 +58,6 @@ shoot() {
   local name="$1"; shift
   local region; region="$(echo "$LANGUAGE" | tr '[:lower:]' '[:upper:]')"
   xcrun simctl terminate "$UDID" "$BUNDLE_ID" 2>/dev/null || true
-xcrun simctl shutdown "$UDID"
   # The damage warning on the home screen and the hint bubbles on an experiment are for first-time
   # users and would cover the screenshot
   xcrun simctl launch "$UDID" "$BUNDLE_ID" \
