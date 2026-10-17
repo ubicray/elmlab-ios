@@ -10,16 +10,20 @@
 # pasted as is or base64-encoded. The key needs a role that may use cloud-managed distribution
 # certificates (Admin).
 #
-# A version tag (v1.0.0) releases that version; a manual run asks for one. The build number is the
-# run number of this workflow, so every upload gets a new one. Pull requests that touch what the
+# A push to the elmlab branch releases the version in the VERSION file, a version tag (v1.0.0)
+# releases that version, and a manual run asks for one. The build number is the run number of this
+# workflow, so every upload gets a new one. Once a version is on the App Store, TestFlight takes
+# no more builds of it, so raise VERSION for the next one. Pull requests that touch what the
 # archive depends on run the archive job only, as a check that the app still archives for devices.
 name: release
 on:
   push:
+    branches: [elmlab]
     tags: ['v*']
   pull_request:
     paths:
       - .github/workflows/release.yml
+      - VERSION
       - phyphox-iOS/phyphox.xcodeproj/**
       - phyphox-iOS/phyphox/Info.plist
       - tools/elmlab/**
@@ -56,7 +60,8 @@ jobs:
         run: |
           set -euo pipefail
           case "$GITHUB_EVENT_NAME" in
-            push) VERSION="${GITHUB_REF_NAME#v}" ;;
+            push)
+              if [ "$GITHUB_REF_TYPE" = tag ]; then VERSION="${GITHUB_REF_NAME#v}"; else VERSION="$(tr -d '[:space:]' < VERSION)"; fi ;;
             workflow_dispatch) VERSION="$INPUT_VERSION" ;;
             *) VERSION=0.0.0 ;;
           esac
