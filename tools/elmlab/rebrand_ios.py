@@ -61,7 +61,8 @@ def header_png():
     im.resize((718, 192), Image.LANCZOS).save(ASSETS / "phyphox_dark.imageset/phyphox_dark.png")
 
 def launch_png():
-    """Launch screen logo (was the phyphox + RWTH stack), 827x666 on the dark launch background."""
+    """Launch screen logo (was the phyphox + RWTH stack, logo_stack), 827x666 on the dark launch
+    background. A new asset name, so iOS drops the launch screen it cached from a phyphox build."""
     W,H = 827*2, 666*2
     im = Image.new("RGBA",(W,H),(0,0,0,0)); d = ImageDraw.Draw(im)
     S = 760; sq = Image.new("RGBA",(S,S),(0,0,0,0))
@@ -69,7 +70,7 @@ def launch_png():
     sq.paste(art(S,(S*0.2,S*0.2,S*0.8,S*0.8),bg=NAVY+(255,)),(0,0),m); im.paste(sq,((W-S)//2,0),sq)
     fb = font("IBMPlexSansCondensed-Bold.ttf", 330); w = d.textlength("Elm Lab", font=fb)
     wordmark(d, (W-w)/2, H-60, 330)
-    im.resize((827, 666), Image.LANCZOS).save(ASSETS / "logo_stack.imageset/logo_stack.png")
+    im.resize((827, 666), Image.LANCZOS).save(ASSETS / "elmlab_launch.imageset/elmlab_launch.png")
 
 def museum_png():
     """Credits logo (was RWTH), 827x378: Interaktiv Elm Muzeyi."""

@@ -19,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_stack" translatesAutoresizingMaskIntoConstraints="NO" id="c0k-hA-h7K">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elmlab_launch" translatesAutoresizingMaskIntoConstraints="NO" id="c0k-hA-h7K">
                                 <rect key="frame" x="94" y="167" width="187.5" height="333.5"/>
                             </imageView>
                         </subviews>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_stack" width="827" height="666"/>
+        <image name="elmlab_launch" width="827" height="666"/>
     </resources>
 </document>
