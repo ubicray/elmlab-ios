@@ -43,14 +43,7 @@ final class ExperimentViewModuleFactory {
             else if let descriptor = descriptor as? SeparatorViewDescriptor {
                 views.append(ExperimentSeparatorView(descriptor: descriptor, resourceFolder: resourceFolder))
             }
-            else if let descriptor = descriptor as? DepthGUIViewDescriptor {
-                if #available(iOS 14.0, *) {
-                    views.append(ExperimentDepthGUIView(descriptor: descriptor, resourceFolder: resourceFolder))
-                } else {
-                    print("DepthGUI not supported below iOS 14")
-                    //Should not happen as the depth input is marked as unavailable below iOS 14
-                }
-            } else  if let descriptor = descriptor as? CameraViewDescriptor {
+            else if let descriptor = descriptor as? CameraViewDescriptor {
                 if #available(iOS 14.0, *) {
                     views.append(ExperimentCameraUIView(descriptor: descriptor))
                 } else {

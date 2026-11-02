@@ -17,7 +17,6 @@ enum ViewElementDescriptor {
     case edit(EditViewElementDescriptor)
     case button(ButtonViewElementDescriptor)
     case graph(GraphViewElementDescriptor)
-    case depthGUI(DepthGUIViewElementDescriptor)
     case image(ImageViewElementDescriptor)
     case switchView(SwitchViewElementDescriptor)
     case dropdown(DropdownViewElementDescriptor)
@@ -43,7 +42,6 @@ private final class ViewElementHandler: ResultElementHandler {
     private let editHandler = EditViewElementHandler()
     private let buttonhandler = ButtonViewElementHandler()
     private let graphHandler = GraphViewElementHandler()
-    private let depthGUIHandler = DepthGUIViewElementHandler()
     private let imageHandler = ImageViewElementHandler()
     private let switchHandler = SwitchViewElementHandler()
     private let dropdownHandler = DropdownViewElementHandler()
@@ -70,8 +68,6 @@ private final class ViewElementHandler: ResultElementHandler {
             handler = buttonhandler
         case "graph":
             handler = graphHandler
-        case "depth-gui":
-            handler = depthGUIHandler
         case "image":
             handler = imageHandler
         case "toggle":
@@ -114,7 +110,6 @@ private final class ViewElementHandler: ResultElementHandler {
         editHandler.clear()
         buttonhandler.clear()
         graphHandler.clear()
-        depthGUIHandler.clear()
         imageHandler.clear()
         switchHandler.clear()
         dropdownHandler.clear()

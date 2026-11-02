@@ -69,7 +69,8 @@ final class DeserializerTests: XCTestCase {
         //The experiments folder also holds a license, a readme and image resources, so
         //only files with the phyphox extension are parsed, including those in subfolders.
         let enumerator = try FileManager.default.enumerator(at: experimentsBaseURL, includingPropertiesForKeys: nil).unwrap()
-        let experiments = enumerator.compactMap({ $0 as? URL }).filter({ $0.pathExtension == "phyphox" })
+        //Elm Lab: the depth experiments are refused (ElmLabNoDepthTests) and the release drops them
+        let experiments = enumerator.compactMap({ $0 as? URL }).filter({ $0.pathExtension == "phyphox" && !ElmLabNoDepth.uses($0) })
 
         let reusableParser = DocumentParser(documentHandler: PhyphoxDocumentHandler())
 
@@ -90,7 +91,7 @@ final class DeserializerTests: XCTestCase {
 
     /// Tests whether an invalid input stream correctly triggers an error. Tests a fresh parser and a parser that has already been used to create a valid output.
     func testInvalidStream() throws {
-        let experiments = try FileManager.default.contentsOfDirectory(atPath: experimentsBaseURL.path).filter({ $0.hasSuffix(".phyphox") })
+        let experiments = try FileManager.default.contentsOfDirectory(atPath: experimentsBaseURL.path).filter({ $0.hasSuffix(".phyphox") && !ElmLabNoDepth.uses(experimentsBaseURL.appendingPathComponent($0)) })
 
         let usedParser = DocumentParser(documentHandler: PhyphoxDocumentHandler())
 
@@ -4814,8 +4815,6 @@ final class CaseFoldingGuardRailTests: XCTestCase {
         check(SensorType.self)
         check(SensorMetadata.self)
         check(ExperimentSensorInput.RateStrategy.self)
-        check(ExperimentDepthInput.DepthExtractionMode.self)
-        check(ExperimentDepthInput.CameraOrientation.self)
         check(ExperimentCameraInput.AutoExposureStrategy.self)
         check(CameraFeature.self)
         check(SimpleInputConversion.ConversionFunction.self)
@@ -5303,6 +5302,12 @@ final class CorpusConformanceTests: XCTestCase {
             let platformExpectations = try platformExpectations(in: directoryURL)
             for url in try phyphoxFiles(in: directoryURL) {
                 let name = url.path.replacingOccurrences(of: corpus.path + "/", with: "")
+                //Elm Lab ships without the depth sensor input and depth-gui view, which App
+                //Review rejected as unused depth sensor code: a file using them must be refused
+                if ElmLabNoDepth.uses(url) {
+                    XCTAssertThrowsError(try ExperimentSerialization.readExperimentFromURL(url), "\(name) uses the depth input or depth-gui, which Elm Lab does not have")
+                    continue
+                }
                 if let expectation = platformExpectations[url.lastPathComponent] {
                     XCTAssertTrue(expectation == "rejects" || expectation == "accepts", "unexpected platform expectation \"\(expectation)\" for \(name)")
                     if expectation == "rejects" {

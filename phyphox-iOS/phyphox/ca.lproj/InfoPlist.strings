@@ -10,5 +10,5 @@
 "NSPhotoLibraryAddUsageDescription" = "Elm Lab može dodati slike ekrana u vašu biblioteku fotografija ako odaberete \"podeli sliku ekrana\" iz izbornika eksperimenta.";
 "NSMotionUsageDescription" = "Elm Lab čita senzore vašeg telefona kako bi omogućila njihovo korišćenje u eksperimentima fizike.";
 "NSCameraUsageDescription" = "Elm Lab usa la cámara para escanear códigos QR, para agregar configuraciones de experimento personalizadas.";
-"NSBluetoothPeripheralUsageDescription" = "Elm Lab tiene la capacidad de leer sensores externos  por medio de Bluetooth y escribir datos en dispositivos externos por Bluetooth. Puede obtener más información sobre esta función y de dispositivos compatibles en http://phyphox.org/ble.";
-"NSBluetoothAlwaysUsageDescription" = "Elm Lab tiene la capacidad de leer sensores externos por medio del Bluetooth y escribir datos en dispositivos  externos por Bluetooth. Puede obtener más información sobre esta función y los dispositivos compatibles en http://phyphox.org/ble.";
+"NSBluetoothPeripheralUsageDescription" = "Elm Lab tiene la capacidad de leer sensores externos  por medio de Bluetooth y escribir datos en dispositivos externos por Bluetooth.";
+"NSBluetoothAlwaysUsageDescription" = "Elm Lab tiene la capacidad de leer sensores externos por medio del Bluetooth y escribir datos en dispositivos  externos por Bluetooth.";

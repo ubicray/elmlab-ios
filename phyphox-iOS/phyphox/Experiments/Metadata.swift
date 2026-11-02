@@ -136,20 +136,9 @@ enum Metadata: CaseIterable {
             return "Apple"
         case .deviceRelease:
             return UIDevice.current.systemVersion
-        case .depthBackSensor:
-            do {
-                try ExperimentDepthInput.verifySensorAvailibility(cameraOrientation: .back)
-            } catch {
-                return "0"
-            }
-            return "1"
-        case .depthFrontSensor:
-            do {
-                try ExperimentDepthInput.verifySensorAvailibility(cameraOrientation: .front)
-            } catch {
-                return "0"
-            }
-            return "1"
+        case .depthBackSensor, .depthFrontSensor:
+            //Elm Lab ships without the depth sensor input, so there is never one to report
+            return "0"
         default:
             return nil
         }

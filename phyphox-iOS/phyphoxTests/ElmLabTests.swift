@@ -71,3 +71,54 @@ final class ElmLabTests: XCTestCase {
         XCTAssertFalse(ElmLab.shouldSetDefaultLanguage(alreadySet: false, appLanguages: nil, arguments: plain + ["screenshot"], environment: [:]))
     }
 }
+
+///Elm Lab has no depth sensor support: App Review rejected build 15 under guidelines 2.5.1 and
+///4.2.1 for the depth sensor code phyphox carries for its LiDAR experiments, which no Elm Lab
+///experiment uses. The code is gone, so files with a depth input or a depth-gui view are refused, and the
+///release drops the bundled ones (tools/elmlab/strip_phyphox_org.py).
+enum ElmLabNoDepth {
+    static func uses(_ url: URL) -> Bool {
+        guard let text = try? String(contentsOf: url, encoding: .utf8) else { return false }
+        return text.range(of: #"<depth[\s>/-]"#, options: .regularExpression) != nil
+    }
+}
+
+final class ElmLabNoDepthTests: XCTestCase {
+    private func parse(_ xml: String) throws -> Experiment {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".phyphox")
+        try xml.write(to: url, atomically: true, encoding: .utf8)
+        defer { try? FileManager.default.removeItem(at: url) }
+        return try ExperimentSerialization.readExperimentFromURL(url)
+    }
+
+    func testDepthInputIsRefused() {
+        XCTAssertThrowsError(try parse("""
+        <phyphox version="1.15">
+            <title>t</title><category>c</category>
+            <data-containers><container size="100">z</container></data-containers>
+            <input><depth mode="closest"><output component="z">z</output></depth></input>
+        </phyphox>
+        """))
+    }
+
+    func testDepthGUIIsRefused() {
+        XCTAssertThrowsError(try parse("""
+        <phyphox version="1.15">
+            <title>t</title><category>c</category>
+            <views><view label="v"><depth-gui label="Depth"/></view></views>
+        </phyphox>
+        """))
+    }
+
+    func testTheSameFileWithoutDepthLoads() throws {
+        _ = try parse("""
+        <phyphox version="1.15">
+            <title>t</title><category>c</category>
+            <data-containers><container size="100">z</container></data-containers>
+            <input><sensor type="accelerometer"><output component="z">z</output></sensor></input>
+            <views><view label="v"><info label="Hello"/></view></views>
+        </phyphox>
+        """)
+    }
+
+}

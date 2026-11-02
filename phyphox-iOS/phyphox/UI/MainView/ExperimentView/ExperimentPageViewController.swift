@@ -698,14 +698,6 @@ final class ExperimentPageViewController: UIViewController, UIPageViewController
         if #available(iOS 14.0, *) {
             for vc in experimentViewControllers {
                 for view in vc.modules {
-                    if let depthGUI = view.view as? ExperimentDepthGUIView {
-                        guard let session = experiment.depthInput?.session as? ExperimentDepthInputSession else {
-                            continue
-                        }
-                        session.attachDelegate(delegate: depthGUI)
-                        depthGUI.depthGUISelectionDelegate = session
-                    }
-                    
                     if let cameraGUI = view.view as? ExperimentCameraUIView {
                         guard let session = experiment.cameraInput?.session as? ExperimentCameraInputSession else {
                             continue
@@ -770,10 +762,6 @@ final class ExperimentPageViewController: UIViewController, UIPageViewController
         super.viewDidDisappear(animated)
 
         if #available(iOS 14.0, *) {
-            if let session = experiment.depthInput?.session as? ExperimentDepthInputSession {
-                session.stopSession()
-            }
-            
             if let camSession = experiment.cameraInput?.session as? ExperimentCameraInputSession {
                 camSession.endSession()
             }
