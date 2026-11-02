@@ -1,5 +1,5 @@
 /*
-Based on the ARKit example implementations by Apple
+Based on the example implementations by Apple
  (https://developer.apple.com/documentation/arkit/environmental_analysis/creating_a_fog_effect_using_scene_depth)
 */
 

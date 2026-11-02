@@ -185,7 +185,6 @@ final class Experiment {
     let translation: ExperimentTranslationCollection?
 
     let sensorInputs: [ExperimentSensorInput]
-    let depthInput: ExperimentDepthInput?
     let cameraInput: ExperimentCameraInput?
     let gpsInputs: [ExperimentGPSInput]
     let audioInputs: [ExperimentAudioInput]
@@ -217,7 +216,7 @@ final class Experiment {
     
     private let queue = DispatchQueue(label: "de.rwth-aachen.phyphox.analysis", attributes: [])
 
-    init(title: String, stateTitle: String?, description: String?, links: [ExperimentLink], category: String, icon: ExperimentIcon, color: UIColor?, appleBan: Bool, isLink: Bool, translation: ExperimentTranslationCollection?, buffers: [String: DataBuffer], timeReference: ExperimentTimeReference, sensorInputs: [ExperimentSensorInput], depthInput: ExperimentDepthInput?, cameraInput: ExperimentCameraInput?, gpsInputs: [ExperimentGPSInput], audioInputs: [ExperimentAudioInput], audioOutput: ExperimentAudioOutput?, flashlightOutput: ExperimentFlashlightOutput?, bluetoothDevices: [ExperimentBluetoothDevice], bluetoothInputs: [ExperimentBluetoothInput], bluetoothOutputs: [ExperimentBluetoothOutput], networkConnections: [NetworkConnection], viewDescriptors: [ExperimentViewCollectionDescriptor]?, analysis: ExperimentAnalysis, export: ExperimentExport?) {
+    init(title: String, stateTitle: String?, description: String?, links: [ExperimentLink], category: String, icon: ExperimentIcon, color: UIColor?, appleBan: Bool, isLink: Bool, translation: ExperimentTranslationCollection?, buffers: [String: DataBuffer], timeReference: ExperimentTimeReference, sensorInputs: [ExperimentSensorInput], cameraInput: ExperimentCameraInput?, gpsInputs: [ExperimentGPSInput], audioInputs: [ExperimentAudioInput], audioOutput: ExperimentAudioOutput?, flashlightOutput: ExperimentFlashlightOutput?, bluetoothDevices: [ExperimentBluetoothDevice], bluetoothInputs: [ExperimentBluetoothInput], bluetoothOutputs: [ExperimentBluetoothOutput], networkConnections: [NetworkConnection], viewDescriptors: [ExperimentViewCollectionDescriptor]?, analysis: ExperimentAnalysis, export: ExperimentExport?) {
         self.title = title
         self.stateTitle = stateTitle
         
@@ -241,7 +240,6 @@ final class Experiment {
         
         self.buffers = buffers
         self.sensorInputs = sensorInputs
-        self.depthInput = depthInput
         self.cameraInput = cameraInput
         self.gpsInputs = gpsInputs
         self.audioInputs = audioInputs
@@ -272,10 +270,6 @@ final class Experiment {
         }
         
         if (cameraInput != nil) {
-            requiredPermissions.insert(.camera)
-        }
-        
-        if (depthInput != nil) {
             requiredPermissions.insert(.camera)
         }
         
@@ -317,7 +311,7 @@ final class Experiment {
     }
 
     convenience init(file: String, error: String) {
-        self.init(title: file, stateTitle: nil, description: error, links: [], category: localize("unknown"), icon: ExperimentIcon.string("!"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), appleBan: false, isLink: false, translation: nil, buffers: [:], timeReference: ExperimentTimeReference(), sensorInputs: [], depthInput: nil, cameraInput: nil, gpsInputs: [], audioInputs: [], audioOutput: nil, flashlightOutput: nil, bluetoothDevices: [], bluetoothInputs: [], bluetoothOutputs: [], networkConnections: [], viewDescriptors: nil, analysis: ExperimentAnalysis(modules: [], sleep: 0.0, dynamicSleep: nil, onUserInput: false, requireFill: nil, requireFillThreshold: 1, requireFillDynamic: nil, timedRun: false, timedRunStartDelay: 0.0, timedRunStopDelay: 0.0, timeReference: ExperimentTimeReference(), sensorInputs: [], audioInputs: []), export: nil)
+        self.init(title: file, stateTitle: nil, description: error, links: [], category: localize("unknown"), icon: ExperimentIcon.string("!"), color: UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0), appleBan: false, isLink: false, translation: nil, buffers: [:], timeReference: ExperimentTimeReference(), sensorInputs: [], cameraInput: nil, gpsInputs: [], audioInputs: [], audioOutput: nil, flashlightOutput: nil, bluetoothDevices: [], bluetoothInputs: [], bluetoothOutputs: [], networkConnections: [], viewDescriptors: nil, analysis: ExperimentAnalysis(modules: [], sleep: 0.0, dynamicSleep: nil, onUserInput: false, requireFill: nil, requireFillThreshold: 1, requireFillDynamic: nil, timedRun: false, timedRunStartDelay: 0.0, timedRunStopDelay: 0.0, timeReference: ExperimentTimeReference(), sensorInputs: [], audioInputs: []), export: nil)
         invalid = true;
     }
     
@@ -630,7 +624,6 @@ final class Experiment {
         MotionSession.sharedSession().resetConfig()
         sensorInputs.forEach{ $0.configureMotionSession() }
         sensorInputs.forEach { $0.start(queue: queue) }
-        try depthInput?.start(queue: queue)
         try cameraInput?.start(queue: queue)
         gpsInputs.forEach { $0.start(queue: queue) }
         bluetoothInputs.forEach { $0.start(queue: queue) }
@@ -649,7 +642,6 @@ final class Experiment {
         analysis.running = false
                 
         sensorInputs.forEach { $0.stop() }
-        depthInput?.stop()
         cameraInput?.stop()
         gpsInputs.forEach { $0.stop() }
         bluetoothInputs.forEach { $0.stop() }
@@ -745,7 +737,6 @@ final class Experiment {
         analysis.notifyBuffersReset(resetBuffers)
 
         sensorInputs.forEach { $0.clear() }
-        depthInput?.clear()
         cameraInput?.clear()
         gpsInputs.forEach { $0.clear() }
         
@@ -825,7 +816,6 @@ extension Experiment: Equatable {
             lhs.sensorInputs.elementsEqual(rhs.sensorInputs, by: { (l, r) -> Bool in
                 ExperimentSensorInput.valueEqual(lhs: l, rhs: r)
             }) &&
-            lhs.depthInput == rhs.depthInput &&
             lhs.gpsInputs == rhs.gpsInputs &&
             lhs.audioInputs == rhs.audioInputs &&
             lhs.audioOutput == rhs.audioOutput &&

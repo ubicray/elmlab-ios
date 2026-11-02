@@ -10,6 +10,20 @@ import Foundation
 import MetalKit
 import AVFoundation
 
+//Shared by the camera input and preview (they used to live in the depth GUI renderer, removed
+//from Elm Lab together with the depth input)
+
+// The max number of command buffers in flight.
+let kMaxBuffersInFlight: Int = 3
+
+// Vertex data for an image plane.
+let kImagePlaneVertexData: [Float] = [
+    -1.0, -1.0, 0.0, 1.0,
+    1.0, -1.0, 1.0, 1.0,
+    -1.0, 1.0, 0.0, 0.0,
+    1.0, 1.0, 1.0, 0.0
+]
+
 @available(iOS 14.0, *)
 class CameraPreviewRenderer: NSObject, MTKViewDelegate {
     

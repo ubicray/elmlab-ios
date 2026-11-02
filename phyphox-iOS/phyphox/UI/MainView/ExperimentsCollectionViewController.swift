@@ -839,22 +839,6 @@ final class ExperimentsCollectionViewController: CollectionViewController, Exper
             catch{}
         }
         
-        if experiment.depthInput != nil {
-            do {
-                try ExperimentDepthInput.verifySensorAvailibility(cameraOrientation: nil)
-            }
-            catch DepthInputError.sensorUnavailable {
-                let state = experiment.stateTitle ?? ""
-                let title = experiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
-                let message =  localize("sensorNotAvailableWarningText1")  + localize("sensorDepth") + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (experiment.localizedDescription ?? "") */
-                
-                showSensorNotAvailableDialogWithExperimentDetails(title, message, experiment.localizedLinks)
-         
-                return
-            }
-            catch {}
-        }
-
         let vc = ExperimentPageViewController(experiment: experiment)
 
         //Fold the large-title collapse into the push transition: pushed with the bar still
@@ -1333,24 +1317,6 @@ print("\(url)")
             }
             
             catch{}
-        }
-        
-        if loadedExperiment.depthInput != nil {
-            do {
-                try ExperimentDepthInput.verifySensorAvailibility(cameraOrientation: nil)
-            }
-            catch DepthInputError.sensorUnavailable {
-                
-                let state = loadedExperiment.stateTitle ?? ""
-                let title = loadedExperiment.localizedTitle + (state != "" ? "\n\n" + state : "\n")
-                let message =  localize("sensorNotAvailableWarningText1") + localize("sensorDepth") + localize("sensorNotAvailableWarningText2") /* + "\n\n" +  (loadedExperiment.localizedDescription ?? "") */
-                
-                showSensorNotAvailableDialogWithExperimentDetails(title, message, loadedExperiment.localizedLinks)
-         
-                
-                return false
-            }
-            catch {}
         }
         
         if loadedExperiment.bluetoothDevices.count == 1, let input = loadedExperiment.bluetoothDevices.first {

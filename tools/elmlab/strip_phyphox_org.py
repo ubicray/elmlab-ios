@@ -4,6 +4,7 @@
 the same name in the Android fork. Run from the repository root; the release workflow runs it before
 the archive, so the submodules themselves stay untouched upstream checkouts.
 - experiments of the special "phyphox.org" category (support / sensor database) are deleted
+- experiments using the depth input or depth-gui view are deleted: Elm Lab has no depth sensor code
 - <link> elements pointing to phyphox.org are removed (root and translation blocks)
 - the demo experiments in tools/elmlab/demo_experiments are copied into the experiment collection
 - the web interface gets the Elm Lab logo and colours
@@ -18,7 +19,7 @@ DEMOS = ROOT / "tools/elmlab/demo_experiments"
 deleted = links = 0
 for p in EXP.rglob("*.phyphox"):
     s = p.read_text(encoding="utf-8")
-    if "<category>phyphox.org</category>" in s:
+    if "<category>phyphox.org</category>" in s or re.search(r'<depth[\s>/-]', s):
         p.unlink(); deleted += 1; continue
     s2, n = re.subn(r'\s*<link\b[^>]*>[^<]*phyphox\.org[^<]*</link>', '', s)
     if n: p.write_text(s2, encoding="utf-8"); links += n

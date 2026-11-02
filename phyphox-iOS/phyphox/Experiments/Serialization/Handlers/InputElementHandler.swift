@@ -30,10 +30,6 @@ private let audioComponents = [
     AnalysisIOSlot(name: "out", asRequired: false, repeatOffset: -1, valueAllowed: false, emptyAllowed: false, minCount: 1, maxCount: 1),
     AnalysisIOSlot(name: "rate", asRequired: true, repeatOffset: -1, valueAllowed: false, emptyAllowed: false, minCount: 0, maxCount: 1)
 ]
-private let depthComponents = [
-    AnalysisIOSlot(name: "z", asRequired: false, repeatOffset: -1, valueAllowed: false, emptyAllowed: false, minCount: 1, maxCount: 1),
-    AnalysisIOSlot(name: "t", asRequired: true, repeatOffset: -1, valueAllowed: false, emptyAllowed: false, minCount: 0, maxCount: 1)
-]
 private let cameraComponents = ["t", "luma", "luminance", "hue", "saturation", "value", "shutterSpeed", "iso", "aperture", "pixelPosition"].map {
     AnalysisIOSlot(name: $0, asRequired: true, repeatOffset: -1, valueAllowed: false, emptyAllowed: false, minCount: 0, maxCount: 1)
 }
@@ -87,62 +83,6 @@ private final class LocationElementHandler: ResultElementHandler, LookupElementH
     func endElement(text: String, attributes: AttributeContainer) throws {
         let outputs = try IOMappingValidation.validateComponents(element: "location", slots: locationComponents, outputs: outputHandler.results)
         results.append(LocationInputDescriptor(outputs: outputs))
-    }
-}
-
-struct DepthInputDescriptor: SensorDescriptor {
-    let mode: ExperimentDepthInput.DepthExtractionMode
-    let x1: Float
-    let x2: Float
-    let y1: Float
-    let y2: Float
-    let smooth: Bool
-    let outputs: [SensorOutputDescriptor]
-}
-
-private final class DepthElementHandler: ResultElementHandler, LookupElementHandler {
-    var results = [DepthInputDescriptor]()
-
-    private let outputHandler = SensorOutputElementHandler()
-
-    var childHandlers: [String : ElementHandler]
-
-    init() {
-        childHandlers = ["output": outputHandler]
-    }
-
-    func startElement(attributes: AttributeContainer) throws {}
-    
-    private enum Attribute: String, AttributeKey {
-        case mode
-        case x1
-        case x2
-        case y1
-        case y2
-        case smooth
-    }
-
-    func endElement(text: String, attributes: AttributeContainer) throws {
-        let attributes = attributes.attributes(keyedBy: Attribute.self)
-
-        let mode: ExperimentDepthInput.DepthExtractionMode = try attributes.optionalValue(for: .mode) ?? .closest
-        let x1user: Float = try attributes.optionalValue(for: .x1) ?? 0.4
-        let x2user: Float = try attributes.optionalValue(for: .x2) ?? 0.6
-        let y1user: Float = try attributes.optionalValue(for: .y1) ?? 0.4
-        let y2user: Float = try attributes.optionalValue(for: .y2) ?? 0.6
-
-        //Careful: We will now switch from the user coordinate system to the camera coordinate system: x -> -y, y -> -x
-        let x1 = 1.0-y1user
-        let x2 = 1.0-y2user
-        let y1 = 1.0-x1user
-        let y2 = 1.0-x2user
-        
-        let smooth: Bool = try attributes.optionalValue(for: .smooth) ?? true
-
-        //The depth output is required; an unnamed output fills it ("z")
-        let outputs = try IOMappingValidation.validateComponents(element: "depth", slots: depthComponents, outputs: outputHandler.results)
-
-        results.append(DepthInputDescriptor(mode: mode, x1: x1, x2: x2, y1: y1, y2: y2, smooth: smooth, outputs: outputs))
     }
 }
 
@@ -555,12 +495,11 @@ private final class BluetoothElementHandler: ResultElementHandler, LookupElement
 }
 
 final class InputElementHandler: ResultElementHandler, LookupElementHandler, AttributelessElementHandler {
-    typealias Result = (sensors: [SensorInputDescriptor], depth: [DepthInputDescriptor], camera: [CameraInputDescriptor], audio: [AudioInputDescriptor], location: [LocationInputDescriptor], bluetooth: [BluetoothInputBlockDescriptor])
+    typealias Result = (sensors: [SensorInputDescriptor], camera: [CameraInputDescriptor], audio: [AudioInputDescriptor], location: [LocationInputDescriptor], bluetooth: [BluetoothInputBlockDescriptor])
 
     var results = [Result]()
 
     private let sensorHandler = SensorElementHandler()
-    private let depthHandler = DepthElementHandler()
     private let audioHandler = AudioElementHandler()
     private let locationHandler = LocationElementHandler()
     private let bluetoothHandler = BluetoothElementHandler()
@@ -569,18 +508,17 @@ final class InputElementHandler: ResultElementHandler, LookupElementHandler, Att
     var childHandlers: [String: ElementHandler]
 
     init() {
-        childHandlers = ["sensor": sensorHandler, "depth": depthHandler, "camera": cameraHandler, "audio": audioHandler, "location": locationHandler, "bluetooth": bluetoothHandler]
+        childHandlers = ["sensor": sensorHandler, "camera": cameraHandler, "audio": audioHandler, "location": locationHandler, "bluetooth": bluetoothHandler]
     }
 
     func endElement(text: String, attributes: AttributeContainer) throws {
         let audio = audioHandler.results
         let location = locationHandler.results
         let sensors = sensorHandler.results
-        let depth = depthHandler.results
         let camera = cameraHandler.results
         let bluetooth = bluetoothHandler.results
 
-        results.append((sensors, depth, camera, audio, location, bluetooth))
+        results.append((sensors, camera, audio, location, bluetooth))
     }
 }
 

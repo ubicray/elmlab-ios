@@ -31,15 +31,6 @@ private extension ExperimentSensorInput {
     }
 }
 
-private extension ExperimentDepthInput {
-    convenience init(descriptor: DepthInputDescriptor, timeReference: ExperimentTimeReference, buffers: [String: DataBuffer]) {
-        let zBuffer = descriptor.buffer(for: "z", from: buffers)
-        let tBuffer = descriptor.buffer(for: "t", from: buffers)
-
-        self.init(timeReference: timeReference, zBuffer: zBuffer, tBuffer: tBuffer, mode: descriptor.mode, x1: descriptor.x1, x2: descriptor.x2, y1: descriptor.y1, y2: descriptor.y2, smooth: descriptor.smooth)
-    }
-}
-
 private extension ExperimentCameraInput {
     convenience init(descriptor: CameraInputDescriptor, timeReference: ExperimentTimeReference, buffers: [String: DataBuffer]) {
         let tBuffer = descriptor.buffer(for: "t", from: buffers)
@@ -249,12 +240,6 @@ final class PhyphoxElementHandler: ResultElementHandler, LookupElementHandler {
         let outputDescriptor = try outputHandler.expectOptionalResult()
 
         let sensorInputs = inputDescriptor?.sensors.map { ExperimentSensorInput(descriptor: $0.defaults(forVersion: version), timeReference: timeReference, buffers: buffers) } ?? []
-        let depthInputs = inputDescriptor?.depth.map { ExperimentDepthInput(descriptor: $0, timeReference: timeReference, buffers: buffers)}
-        if depthInputs != nil && depthInputs!.count > 1 {
-            throw ElementHandlerError.message("Depth is only allowed once.")
-        }
-        let depthInput = depthInputs?.first
-        
         let cameraInputs = inputDescriptor?.camera.map {ExperimentCameraInput(descriptor: $0, timeReference: timeReference, buffers: buffers) }
         if cameraInputs != nil && cameraInputs!.count > 1 {
             throw ElementHandlerError.message("Camera is only allowed once.")
@@ -410,7 +395,7 @@ final class PhyphoxElementHandler: ResultElementHandler, LookupElementHandler {
             }
         }
         
-        let experiment = Experiment(title: title, stateTitle: stateTitle, description: description, links: links, category: category, icon: icon, color: color, appleBan: appleBan, isLink: isLink, translation: translations, buffers: buffers, timeReference: timeReference, sensorInputs: sensorInputs, depthInput: depthInput, cameraInput: cameraInput, gpsInputs: gpsInputs, audioInputs: audioInputs, audioOutput: audioOutput, flashlightOutput: flashlightOutput, bluetoothDevices: bluetoothDevices, bluetoothInputs: bluetoothInputs, bluetoothOutputs: bluetoothOutputs, networkConnections: networkConnections, viewDescriptors: viewDescriptors, analysis: analysis, export: export)
+        let experiment = Experiment(title: title, stateTitle: stateTitle, description: description, links: links, category: category, icon: icon, color: color, appleBan: appleBan, isLink: isLink, translation: translations, buffers: buffers, timeReference: timeReference, sensorInputs: sensorInputs, cameraInput: cameraInput, gpsInputs: gpsInputs, audioInputs: audioInputs, audioOutput: audioOutput, flashlightOutput: flashlightOutput, bluetoothDevices: bluetoothDevices, bluetoothInputs: bluetoothInputs, bluetoothOutputs: bluetoothOutputs, networkConnections: networkConnections, viewDescriptors: viewDescriptors, analysis: analysis, export: export)
 
         results.append(experiment)
     }
@@ -537,12 +522,6 @@ final class PhyphoxElementHandler: ResultElementHandler, LookupElementHandler {
             
 
             return GraphViewDescriptor(label: descriptor.label, visibilityBuffer: visibilityBuffer,  translation: translations, xLabel: descriptor.xLabel, yLabel: descriptor.yLabel, zLabel: descriptor.zLabel, xUnit: descriptor.xUnit, yUnit: descriptor.yUnit, zUnit: descriptor.zUnit, yxUnit: descriptor.yxUnit, timeReference: timeReference, timeOnX: descriptor.timeOnX, timeOnY: descriptor.timeOnY, systemTime: descriptor.systemTime, linearTime: descriptor.linearTime, hideTimeMarkers: descriptor.hideTimeMarkers, xInputBuffers: xBuffers, yInputBuffers: yBuffers, zInputBuffers: zBuffers, logX: descriptor.logX, logY: descriptor.logY, logZ: descriptor.logZ, xPrecision: descriptor.xPrecision, yPrecision: descriptor.yPrecision, zPrecision: descriptor.zPrecision, suppressScientificNotation: descriptor.suppressScientificNotation, scaleMinX: descriptor.scaleMinX, scaleMaxX: descriptor.scaleMaxX, scaleMinY: descriptor.scaleMinY, scaleMaxY: descriptor.scaleMaxY, scaleMinZ: descriptor.scaleMinZ, scaleMaxZ: descriptor.scaleMaxZ, minX: descriptor.minX, maxX: descriptor.maxX, minY: descriptor.minY, maxY: descriptor.maxY, minZ: descriptor.minZ, maxZ: descriptor.maxZ, followX: descriptor.followX, aspectRatio: descriptor.aspectRatio, partialUpdate: descriptor.partialUpdate, history: descriptor.history, style: descriptor.style, lineWidth: descriptor.lineWidth, color: descriptor.color, mapWidth: descriptor.mapWidth, colorMap: descriptor.colorMap, showColorScale: descriptor.showColorScale, interpolateMapColors: descriptor.interpolateMapColors, pickLabel: descriptor.pickLabel, pickOutputs: pickOutputs)
-            
-        case .depthGUI(let descriptor):
-            
-            let visibilityBuffer = try getVisibilityBuffer(visibilityKey: descriptor.visibility, buffers: buffers, context: "depth")
-            
-            return DepthGUIViewDescriptor(label: descriptor.label, visibilityBuffer: visibilityBuffer, aspectRatio: descriptor.aspectRatio, translation: translations)
             
         case .switchView(let descriptor):
             guard let buffer = buffers[descriptor.outputBufferName] else {
